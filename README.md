@@ -19,3 +19,25 @@ Vue.use(Paginate)
 import Paginate from 'vuejs-paginate'
 Vue.use(Paginate)
 ```
+
+## Usage
+```js
+<paginate
+  :pageCount="20"
+  :clickHandler="clickHandler"
+  prevText="Prev"
+  nextText="Next"
+  containerClass="pagination"
+  >
+</paginate>
+```
+
+## Props
+| Name | Type | Description |
+| --- | --- | --- |
+| `pageCount` | `Number` | Total count of pages. **required** |
+| `pageRange` | `Number` | Range of pages which displayed. **default: 3** |
+| `prevText` | `String` | Text for the previous button. **default: Prev**  |
+| `nextText` | `String` | Text for the next button. **default: Next**  |
+| `clickHandler` | `Function` | The method to call when page clciked. Use clciked page number as parameter. |
+| `containerClass` | `String` | CSS class for the layout. |
