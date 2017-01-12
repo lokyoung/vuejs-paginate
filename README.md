@@ -1,6 +1,9 @@
 # vuejs-paginate
-A Vue.js component to make pagination.
-Inspried by [react-paginate](https://github.com/AdeleD/react-paginate)
+[![NPM](https://nodei.co/npm/vuejs-paginate.png)](https://nodei.co/npm/vuejs-paginate/)
+
+A Vue.js component to make pagination. Inspried by [react-paginate](https://github.com/AdeleD/react-paginate).
+
+**Note**: Require Vue 2.x.
 
 ## Installation
 
