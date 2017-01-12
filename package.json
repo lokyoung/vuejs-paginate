@@ -6,12 +6,19 @@
   "scripts": {
     "build": "rm -rf ./dist && webpack --config ./webpack.config.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lokyoung/vuejs-paginate.git"
+  },
   "keywords": [
-    "Vue",
+    "vue",
     "paginate"
   ],
-  "author": "lokyoung",
+  "author": "Cain Liu",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lokyoung/vuejs-paginate/issues"
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
