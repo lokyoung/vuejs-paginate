@@ -1,14 +1,19 @@
 # vuejs-paginate
 [![NPM](https://nodei.co/npm/vuejs-paginate.png)](https://nodei.co/npm/vuejs-paginate/)
 
-A Vue.js component to make pagination. Inspried by [react-paginate](https://github.com/AdeleD/react-paginate).
+A Vue.js component to make pagination. Inspired by [react-paginate](https://github.com/AdeleD/react-paginate).
 
 **Note**: Require Vue 2.x.
 
+Easy to use by proving simple api. And you can customize the style of this component by css.
+
+<img src="./img/paginate.png" />
+
+
 ## Installation
 
-```
-npm install vuejs-paginate --save
+```js
+$ npm install vuejs-paginate --save
 ```
 
 - ES5
@@ -24,15 +29,44 @@ Vue.use(Paginate)
 ```
 
 ## Usage
-```js
+
+```html
 <paginate
   :pageCount="20"
-  :clickHandler="clickHandler"
-  prevText="Prev"
-  nextText="Next"
-  containerClass="pagination"
-  >
+  :clickHandler="functionName"
+  :prevText="'Prev'"
+  :nextText="'Next'"
+  :containerClass="'className'">
 </paginate>
+```
+
+Example
+```html
+<template>
+  <paginate
+    :pageCount="20"
+    :pageRange="10"
+    :clickHandler="clickCallback"
+    :prevText="'Prev'"
+    :nextText="'Next'"
+    :containerClass="'pagination'">
+  </paginate>
+</template>
+
+<script>
+export default {
+  methods: {
+    clickCallback (pageNum) => {
+      console.log(pageNum)
+    }
+  }
+}
+</script>
+
+<style lang="css">
+.pagination {
+}
+</style>
 ```
 
 ## Props
