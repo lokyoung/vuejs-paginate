@@ -25,7 +25,8 @@ export default {
       required: true
     },
     clickHandler: {
-      type: Function
+      type: Function,
+      default: () => {}
     },
     pageRange: {
       type: Number,
