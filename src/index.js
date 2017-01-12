@@ -1,9 +1,9 @@
 import Paginate from './components/Paginate'
 
-const vPaginate = {}
+const vuejsPaginate = {}
 
-vPaginate.install = (Vue) => {
+vuejsPaginate.install = (Vue) => {
   Vue.component('paginate', Paginate)
 }
 
-export default vPaginate
+module.exports = exports.default = vuejsPaginate
