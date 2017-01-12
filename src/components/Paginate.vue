@@ -6,7 +6,8 @@
       </a>
     </li>
     <li v-for="page in pages" :class="{ active: page.selected, disabled: page.disabled }">
-      <a @click="handlePageSelected(page.index)">{{ page.content }}</a>
+      <a v-if="page.disabled">{{ page.content }}</a>
+      <a v-else @click="handlePageSelected(page.index)">{{ page.content }}</a>
     </li>
     <li>
       <a @click="nextPage()">
