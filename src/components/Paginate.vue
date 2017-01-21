@@ -34,7 +34,7 @@ export default {
     },
     marginPages: {
       type: Number,
-      default: 1,
+      default: 1
     },
     prevText: {
       type: String,
