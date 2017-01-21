@@ -3,9 +3,9 @@
 
 A Vue.js component to make pagination. Inspired by [react-paginate](https://github.com/AdeleD/react-paginate).
 
-Easy to use by proving simple api. And you can customize the style of this component by css.
+Easy to use by providng simple api. And you can customize the style of this component by css.
 
-<img src="./img/paginate.png" width="400" />
+<img src="https://github.com/lokyoung/vuejs-paginate/blob/master/img/paginate.png" width="400" />
 
 
 ## Installation
@@ -43,7 +43,8 @@ Example
 <template>
   <paginate
     :pageCount="20"
-    :pageRange="10"
+    :pageRange="3"
+    :marginPages="2"
     :clickHandler="clickCallback"
     :prevText="'Prev'"
     :nextText="'Next'"
@@ -72,6 +73,7 @@ export default {
 | --- | --- | --- |
 | `pageCount` | `Number` | Total count of pages. **required** |
 | `pageRange` | `Number` | Range of pages which displayed. **default: 3** |
+| `marginPages` | `Number` | The number of displayed pages for marings. **default: 1** |
 | `prevText` | `String` | Text for the previous button. **default: Prev**  |
 | `nextText` | `String` | Text for the next button. **default: Next**  |
 | `clickHandler` | `Function` | The method to call when page clciked. Use clciked page number as parameter. |

@@ -32,6 +32,10 @@ export default {
       type: Number,
       default: 3
     },
+    marginPages: {
+      type: Number,
+      default: 1,
+    },
     prevText: {
       type: String,
       default: 'Prev'
@@ -80,7 +84,7 @@ export default {
             selected: index === this.selected
           }
 
-          if (index === 0 || index === this.pageCount - 1) {
+          if (index <= this.marginPages - 1 || index >= this.pageCount - this.marginPages) {
             items[index] = page
             continue
           }
@@ -90,12 +94,12 @@ export default {
             disabled: true
           }
 
-          if ((this.selected - leftPart) > 1 && items[1] !== breakView) {
-            items[1] = breakView
+          if ((this.selected - leftPart) > this.marginPages && items[this.marginPages] !== breakView) {
+            items[this.marginPages] = breakView
           }
 
-          if ((this.selected + rightPart) < this.pageCount - 2 && items[this.pageCount - 2] !== breakView) {
-            items[this.pageCount - 2] = breakView
+          if ((this.selected + rightPart) < (this.pageCount - this.marginPages - 1) && items[this.pageCount - this.marginPages - 1] !== breakView) {
+            items[this.pageCount - this.marginPages - 1] = breakView
           }
 
           let overCount = this.selected + rightPart - this.pageCount + 1
