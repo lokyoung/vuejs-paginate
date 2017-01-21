@@ -5,7 +5,7 @@ A Vue.js component to make pagination. Inspired by [react-paginate](https://gith
 
 Easy to use by providng simple api. And you can customize the style of this component by css.
 
-<img src="https://github.com/lokyoung/vuejs-paginate/blob/master/img/paginate.png" width="400" />
+<img src="https://raw.githubusercontent.com/lokyoung/vuejs-paginate/master/img/pagination-show.gif" width="400" />
 
 
 ## Installation
