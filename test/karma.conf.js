@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Mon Jan 30 2017 21:06:47 GMT+0800 (CST)
+const webpack = require('webpack')
 const webpackConfig = require('../webpack.config')
 const path = require('path')
 
@@ -47,6 +48,13 @@ module.exports = function(config) {
           }
         ]
       },
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: '"production"'
+          }
+        })
+      ]
     },
 
 
