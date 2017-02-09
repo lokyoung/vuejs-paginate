@@ -49,7 +49,8 @@ Example
     :clickHandler="clickCallback"
     :prevText="'Prev'"
     :nextText="'Next'"
-    :containerClass="'pagination'">
+    :containerClass="'pagination'"
+    :pageClass="'page-item'">
   </paginate>
 </template>
 
@@ -66,6 +67,8 @@ export default {
 <style lang="css">
 .pagination {
 }
+.page-item {
+}
 </style>
 ```
 
@@ -78,10 +81,10 @@ export default {
 | `prevText` | `String` | Text for the previous button. **default: Prev**  |
 | `nextText` | `String` | Text for the next button. **default: Next**  |
 | `clickHandler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
-| `containerClass` | `String` | CSS class for the layout. |
-| `pageClass` | `String` | Classname on tag `li` of each page element. |
-| `pageLinkClass` | `String` | Classname on tag `a` of each page element. |
-| `prevClass` | `String` | Classname on tag `li` of `previous` element. |
-| `prevLinkClass` | `String` | Classname on tag `a` of `previous` element. |
-| `nextClass` | `String` | Classname on tag `li` of `next` element. |
-| `nextLinkClass` | `String` | Classname on tag `a` of `next` element. |
+| `containerClass` | `String` | CSS class name for the layout. |
+| `pageClass` | `String` | CSS class name for tag `li` of each page element. |
+| `pageLinkClass` | `String` | CSS class name for tag `a` of each page element. |
+| `prevClass` | `String` | CSS class name for tag `li` of `previous` element. |
+| `prevLinkClass` | `String` | CSS class name for tag `a` of `previous` element. |
+| `nextClass` | `String` | CSS class name for tag `li` of `next` element. |
+| `nextLinkClass` | `String` | CSS class name for tag `a` of `next` element. |
