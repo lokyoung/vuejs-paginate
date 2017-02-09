@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf ./dist && webpack --config ./webpack.config.js",
-    "test": "node ./node_modules/karma/bin/karma start test/karma.conf.js --single-run"
+    "test": "node ./node_modules/karma/bin/karma start test/karma.conf.js --single-run",
+    "demo": "webpack-dev-server --config ./demo/webpack.config.js"
   },
   "repository": {
     "type": "git",
