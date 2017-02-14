@@ -26,7 +26,7 @@ describe('Paginate', () => {
 
     Vue.nextTick(() => {
       expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
-      
+
       const prevButton = vm.$el.querySelector("li:first-child a")
       prevButton.click()
 
@@ -47,5 +47,15 @@ describe('Paginate', () => {
     Vue.nextTick(() => {
       expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
     })
+  })
+
+  it('set initial page success', () => {
+    const vm = new Component({
+      propsData: {
+        pageCount: 10,
+        initialPage: 2
+      }
+    }).$mount()
+    expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
   })
 })
