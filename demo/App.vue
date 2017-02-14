@@ -1,8 +1,11 @@
 <template>
+  <!-- The 'pagination' style using in containerClass is from bootstrap -->
   <paginate
     :pageCount="20"
     :marginPages="2"
     :pageRange="4"
+    :initialPage="1"
+    :containerClass="'pagination'"
     :pageClass="'page-item'"
     :pageLinkClass="'page-link-item'"
     :prevClass="'prev-item'"

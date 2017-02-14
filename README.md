@@ -80,11 +80,23 @@ export default {
 | `marginPages` | `Number` | The number of displayed pages for margins. **default: 1** |
 | `prevText` | `String` | Text for the previous button. **default: Prev**  |
 | `nextText` | `String` | Text for the next button. **default: Next**  |
+| `initialPage` | `Number` | The initial page which selected. **default: 1** |
 | `clickHandler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
 | `containerClass` | `String` | CSS class name for the layout. |
 | `pageClass` | `String` | CSS class name for tag `li` of each page element. |
 | `pageLinkClass` | `String` | CSS class name for tag `a` of each page element. |
-| `prevClass` | `String` | CSS class name for tag `li` of `previous` element. |
-| `prevLinkClass` | `String` | CSS class name for tag `a` of `previous` element. |
+| `prevClass` | `String` | CSS class name for tag `li` of `previous` element. | | `prevLinkClass` | `String` | CSS class name for tag `a` of `previous` element. |
 | `nextClass` | `String` | CSS class name for tag `li` of `next` element. |
 | `nextLinkClass` | `String` | CSS class name for tag `a` of `next` element. |
+
+## Demo
+You can see the demo for quickly understand how to use this package.
+
+```sh
+$ git clone git@github.com:lokyoung/vuejs-paginate.git
+$ cd vuejs-paginate
+$ npm install
+$ npm run demo
+```
+
+Check the code from `./demo/index.html` and `./demo/App.vue`.
