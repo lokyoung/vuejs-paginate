@@ -20,6 +20,10 @@ export default {
       type: Number,
       required: true
     },
+    initialPage: {
+      type: Number,
+      default: 1
+    },
     clickHandler: {
       type: Function,
       default: () => {}
@@ -64,7 +68,7 @@ export default {
   },
   data () {
     return {
-      selected: 0
+      selected: this.initialPage - 1
     }
   },
   computed: {
