@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Paginate from '../../src/components/Paginate.vue'
+import Paginate from 'src/components/Paginate.vue'
 
 describe('Paginate', () => {
   const Component = Vue.extend(Paginate)

@@ -2,6 +2,7 @@
 // Generated on Mon Jan 30 2017 21:06:47 GMT+0800 (CST)
 const webpack = require('webpack')
 const webpackConfig = require('../webpack.config')
+const merge = require('webpack-merge')
 const path = require('path')
 
 module.exports = function(config) {
@@ -26,7 +27,7 @@ module.exports = function(config) {
     exclude: [
     ],
 
-    reporters: ['progress', 'coverage'],
+    reporters: ['spec', 'coverage'],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -35,6 +36,12 @@ module.exports = function(config) {
     },
 
     webpack: {
+      resolve: {
+        extensions: ['', '.js', '.vue'],
+        alias: {
+          'src': path.resolve(__dirname, '../src/')
+        }
+      },
       module: {
         loaders: [
           {
@@ -77,7 +84,8 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-chai',
       'karma-phantomjs-launcher',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-spec-reporter'
     ],
 
     // start these browsers
@@ -85,9 +93,10 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
 
     coverageReporter: {
+      dir: './coverage/',
       reporters: [
-        {type:'lcovonly', subdir: '.'},
-        {type:'json', subdir: '.'},
+        {type: 'lcovonly', subdir: '.'},
+        {type: 'text-summary'}
       ]
     },
 
