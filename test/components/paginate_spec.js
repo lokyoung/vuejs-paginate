@@ -64,12 +64,6 @@ describe('Paginate', () => {
       }).$mount()
       expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
     })
-
-    it('shows breakView', () => {
-      const vm = initComponent()
-      const breakViewIndex = vm.selected + vm.pageRange + 3
-      expect(vm.$el.querySelector(`li:nth-child(${breakViewIndex})`).textContent).to.equal('...')
-    })
   })
 
   describe('page range tests', () => {
@@ -83,10 +77,15 @@ describe('Paginate', () => {
       expect(vm.$el.querySelectorAll("li a").length).to.equal(7)
     })
 
-    it('has left part and right part', () => {
-      const vm = initComponent()
-      const selectedIndex = (vm.pageCount - vm.pageRange / 2) + 1
-      vm.selected = selectedIndex
+    it('only has breakView in left', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          initialPage: 9
+        }
+      }).$mount()
+      expect(vm.$el.querySelector(`li:nth-child(3) a`).textContent).to.equal('...')
+      expect(vm.$el.querySelector(`li:nth-child(4) a`).textContent).to.equal('7')
     })
   })
 })
