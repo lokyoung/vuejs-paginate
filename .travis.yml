@@ -4,5 +4,6 @@ node_js:
 install:
   - npm install -g codecov
 script:
+  - npm install
   - npm run test
   - codecov
