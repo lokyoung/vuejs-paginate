@@ -24,10 +24,6 @@ export default {
       type: Number,
       default: 1
     },
-    clickHandler: {
-      type: Function,
-      default: () => {}
-    },
     pageRange: {
       type: Number,
       default: 3
@@ -141,21 +137,21 @@ export default {
 
       this.selected = selected
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('change', this.selected + 1)
     },
     prevPage () {
       if (this.selected <= 0) return
 
       this.selected --
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('change', this.selected + 1)
     },
     nextPage () {
       if (this.selected >= this.pageCount - 1) return
 
       this.selected ++
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('change', this.selected + 1)
     }
   }
 }

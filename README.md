@@ -32,10 +32,10 @@ Vue.use(Paginate)
 ```html
 <paginate
   :pageCount="20"
-  :clickHandler="functionName"
   :prevText="'Prev'"
   :nextText="'Next'"
-  :containerClass="'className'">
+  :containerClass="'className'"
+  @change="functionName">
 </paginate>
 ```
 
@@ -46,11 +46,11 @@ Example
     :pageCount="20"
     :pageRange="3"
     :marginPages="2"
-    :clickHandler="clickCallback"
     :prevText="'Prev'"
     :nextText="'Next'"
     :containerClass="'pagination'"
-    :pageClass="'page-item'">
+    :pageClass="'page-item'"
+    @change="functionName">
   </paginate>
 </template>
 
@@ -81,7 +81,7 @@ export default {
 | `prevText` | `String` | Text for the previous button. **default: Prev**  |
 | `nextText` | `String` | Text for the next button. **default: Next**  |
 | `initialPage` | `Number` | The initial page which selected. **default: 1** |
-| `clickHandler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
+| `change` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
 | `containerClass` | `String` | CSS class name for the layout. |
 | `pageClass` | `String` | CSS class name for tag `li` of each page element. |
 | `pageLinkClass` | `String` | CSS class name for tag `a` of each page element. |
