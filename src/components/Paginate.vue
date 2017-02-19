@@ -34,32 +34,39 @@ export default {
     },
     prevText: {
       type: String,
-      default: 'Prev'
+      default: '«'
     },
     nextText: {
       type: String,
-      default: 'Next'
+      default: '»'
     },
     containerClass: {
-      type: String
+      type: String,
+      default: 'pagination'
     },
     pageClass: {
-      type: String
+      type: String,
+      default: 'page-item'
     },
     pageLinkClass: {
-      type: String
+      type: String,
+      default: 'page-link'
     },
     prevClass: {
-      type: String
+      type: String,
+      default: 'page-item'
     },
     prevLinkClass:{
-      type: String
+      type: String,
+      default: 'page-link'
     },
     nextClass: {
-      type: String
+      type: String,
+      default: 'page-item'
     },
     nextLinkClass: {
-      type: String
+      type: String,
+      default: 'page-link'
     }
   },
   data () {
