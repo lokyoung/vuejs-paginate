@@ -10,8 +10,8 @@ describe('Paginate', () => {
         pageCount: 10
       }
     }).$mount()
-    expect(vm.$el.querySelector("li:first-child a").textContent).to.equal("Prev")
-    expect(vm.$el.querySelector("li:last-child a").textContent).to.equal("Next")
+    expect(vm.$el.querySelector("li:first-child a").textContent).to.equal("«")
+    expect(vm.$el.querySelector("li:last-child a").textContent).to.equal("»")
     expect(vm.$el.querySelector(".active a").textContent).to.equal("1")
   })
 

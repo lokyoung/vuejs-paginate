@@ -24,10 +24,6 @@ export default {
       type: Number,
       default: 1
     },
-    clickHandler: {
-      type: Function,
-      default: () => {}
-    },
     pageRange: {
       type: Number,
       default: 3
@@ -38,32 +34,39 @@ export default {
     },
     prevText: {
       type: String,
-      default: 'Prev'
+      default: '«'
     },
     nextText: {
       type: String,
-      default: 'Next'
+      default: '»'
     },
     containerClass: {
-      type: String
+      type: String,
+      default: 'pagination'
     },
     pageClass: {
-      type: String
+      type: String,
+      default: 'page-item'
     },
     pageLinkClass: {
-      type: String
+      type: String,
+      default: 'page-link'
     },
     prevClass: {
-      type: String
+      type: String,
+      default: 'page-item'
     },
     prevLinkClass:{
-      type: String
+      type: String,
+      default: 'page-link'
     },
     nextClass: {
-      type: String
+      type: String,
+      default: 'page-item'
     },
     nextLinkClass: {
-      type: String
+      type: String,
+      default: 'page-link'
     }
   },
   data () {
@@ -141,21 +144,21 @@ export default {
 
       this.selected = selected
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('change', this.selected + 1)
     },
     prevPage () {
       if (this.selected <= 0) return
 
       this.selected --
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('change', this.selected + 1)
     },
     nextPage () {
       if (this.selected >= this.pageCount - 1) return
 
       this.selected ++
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('change', this.selected + 1)
     }
   }
 }
