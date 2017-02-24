@@ -1,10 +1,10 @@
 # vuejs-paginate
-[![NPM](https://nodei.co/npm/vuejs-paginate.png)](https://nodei.co/npm/vuejs-paginate/)
 [![Build Status](https://travis-ci.org/lokyoung/vuejs-paginate.svg?branch=master)](https://travis-ci.org/lokyoung/vuejs-paginate)
+[![NPM](https://nodei.co/npm/vuejs-paginate.png)](https://nodei.co/npm/vuejs-paginate/)
 
 A Vue.js component to make pagination. Inspired by [react-paginate](https://github.com/AdeleD/react-paginate).
 
-Easy to use by providng simple api. And you can customize the style of this component by css.
+Easy to use by providing simple api. And you can customize the style of this component by css.
 
 <img src="https://raw.githubusercontent.com/lokyoung/vuejs-paginate/master/img/pagination-show.gif" width="550" />
 
