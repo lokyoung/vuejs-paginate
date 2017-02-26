@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: './dist/',
     filename: 'index.js',
-    library: 'vuejs-paginate',
+    library: 'VuejsPaginate',
     libraryTarget: 'umd'
   },
   resolve: {
