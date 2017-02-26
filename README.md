@@ -18,13 +18,27 @@ $ npm install vuejs-paginate --save
 - ES5
 ```js
 var Paginate = require('vuejs-paginate')
-Vue.use(Paginate)
+Vue.component('paginate', Paginate)
 ```
 
 - ES6
 ```js
 import Paginate from 'vuejs-paginate'
-Vue.use(Paginate)
+Vue.component('paginate', Paginate)
+```
+
+- CDN
+Include the source file.
+```html
+<!-- use the latest release -->
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<!-- or use the specify version -->
+<script src="https://unpkg.com/vuejs-paginate@0.6.0"></script>
+```
+
+Register the vue component.
+```js
+Vue.component('paginate', VuejsPaginate)
 ```
 
 ## Usage
