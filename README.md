@@ -11,10 +11,14 @@ Easy to use by providing simple api. And you can customize the style of this com
 
 ## Installation
 
+### NPM
+
+Install the npm package.
 ```js
 $ npm install vuejs-paginate --save
 ```
 
+Register the component.
 - ES5
 ```js
 var Paginate = require('vuejs-paginate')
@@ -27,7 +31,10 @@ import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 ```
 
-- CDN
+PS: For version <= 0.5.0, use `Vue.use(Paginate)` to register the component after import the package. But recommend to use version >= 0.6.0 now.
+
+### CDN
+
 Include the source file.
 ```html
 <!-- use the latest release -->
@@ -36,7 +43,7 @@ Include the source file.
 <script src="https://unpkg.com/vuejs-paginate@0.6.0"></script>
 ```
 
-Register the vue component.
+Register the component.
 ```js
 Vue.component('paginate', VuejsPaginate)
 ```
