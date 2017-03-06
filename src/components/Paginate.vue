@@ -1,14 +1,14 @@
 <template>
   <ul :class="containerClass">
     <li :class="prevClass">
-      <a @click="prevPage()" :class="prevLinkClass" href="#">{{ prevText }}</a>
+      <a @click="prevPage()" :class="prevLinkClass" tabindex="0">{{ prevText }}</a>
     </li>
     <li v-for="page in pages" :class="[{ active: page.selected, disabled: page.disabled }, pageClass]">
-      <a v-if="page.disabled" :class="pageLinkClass" href="#">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index)" :class="pageLinkClass" href="#">{{ page.content }}</a>
+      <a v-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
+      <a v-else @click="handlePageSelected(page.index)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
     </li>
     <li :class="nextClass">
-      <a @click="nextPage()" :class="nextLinkClass" href="#">{{ nextText }}</a>
+      <a @click="nextPage()" :class="nextLinkClass" tabindex="0">{{ nextText }}</a>
     </li>
   </ul>
 </template>
