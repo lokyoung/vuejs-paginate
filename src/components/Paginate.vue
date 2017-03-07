@@ -136,12 +136,14 @@ export default {
     }
   },
   methods: {
-    handlePageSelected (selected) {
+    handlePageSelected (selected, cb = true) {
       if (this.selected === selected) return
 
       this.selected = selected
 
-      this.clickHandler(this.selected + 1)
+      if (cb) {
+        this.clickHandler(this.selected + 1)
+      }
     },
     prevPage () {
       if (this.selected <= 0) return
