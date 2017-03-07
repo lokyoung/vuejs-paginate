@@ -31,7 +31,7 @@ import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 ```
 
-PS: For version <= 0.5.0, use `Vue.use(Paginate)` to register the component after import the package. But recommend to use version >= 0.6.0 now.
+PS: For version <= 0.5.0, use `Vue.use(Paginate)` to register the component after import the package. But recommend to use the latest version now.
 
 ### CDN
 
@@ -40,7 +40,7 @@ Include the source file.
 <!-- use the latest release -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <!-- or use the specify version -->
-<script src="https://unpkg.com/vuejs-paginate@0.6.0"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.7.1"></script>
 ```
 
 Register the component.
