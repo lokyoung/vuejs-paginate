@@ -14,7 +14,8 @@
   },
   "keywords": [
     "vue",
-    "paginate"
+    "paginate",
+    "pagination"
   ],
   "author": "Cain Liu",
   "license": "MIT",
