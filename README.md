@@ -8,6 +8,7 @@ Easy to use by providing simple api. And you can customize the style of this com
 
 <img src="https://raw.githubusercontent.com/lokyoung/vuejs-paginate/master/img/pagination-show.gif" width="550" />
 
+[Online demo](https://jsfiddle.net/lokyoung/u3u3nzns/)
 
 ## Installation
 
