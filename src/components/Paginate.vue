@@ -24,6 +24,10 @@ export default {
       type: Number,
       default: 1
     },
+    forcePage: {
+      type: Number,
+      default: 1
+    },
     clickHandler: {
       type: Function,
       default: () => {}
@@ -69,6 +73,11 @@ export default {
   data () {
     return {
       selected: this.initialPage - 1
+    }
+  },
+  beforeUpdate () {
+    if (this.forcePage !== this.selected) {
+      this.selected = this.forcePage
     }
   },
   computed: {

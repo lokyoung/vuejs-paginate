@@ -103,6 +103,7 @@ export default {
 | `prevText` | `String` | Text for the previous button. **default: Prev**  |
 | `nextText` | `String` | Text for the next button. **default: Next**  |
 | `initialPage` | `Number` | The initial page which selected. **default: 1** |
+| `forcePage` | `Number` | To override selected page with parent prop. **default: 1** |
 | `clickHandler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
 | `containerClass` | `String` | CSS class name for the layout. |
 | `pageClass` | `String` | CSS class name for tag `li` of each page element. |
