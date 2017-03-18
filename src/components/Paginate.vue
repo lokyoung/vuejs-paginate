@@ -22,7 +22,10 @@ export default {
     },
     initialPage: {
       type: Number,
-      default: 1
+      default: 0
+    },
+    forcePage: {
+      type: Number
     },
     clickHandler: {
       type: Function,
@@ -68,7 +71,13 @@ export default {
   },
   data () {
     return {
-      selected: this.initialPage - 1
+      selected: this.initialPage
+    }
+  },
+  beforeUpdate() {
+    if (this.forcePage === undefined) return
+    if (this.forcePage !== this.selected) {
+      this.selected = this.forcePage
     }
   },
   computed: {

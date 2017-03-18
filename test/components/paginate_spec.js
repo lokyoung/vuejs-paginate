@@ -59,7 +59,7 @@ describe('Paginate', () => {
       const vm = new Component({
         propsData: {
           pageCount: 10,
-          initialPage: 2
+          initialPage: 1
         }
       }).$mount()
       expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
