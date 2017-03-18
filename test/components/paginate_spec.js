@@ -64,6 +64,29 @@ describe('Paginate', () => {
       }).$mount()
       expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
     })
+
+    it('set forcePage success', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          initialPage: 0,
+          forcePage: 5
+        }
+      }).$mount()
+
+      const nextButton = vm.$el.querySelector("li:last-child a")
+      nextButton.click()
+      Vue.nextTick(() => {
+        expect(vm.$el.querySelector(".active a").textContent).to.equal("6")
+
+        const prevButton = vm.$el.querySelector("li:first-child a")
+        prevButton.click()
+
+        Vue.nextTick(() => {
+          expect(vm.$el.querySelector(".active a").textContent).to.equal("6")
+        })
+      })
+    })
   })
 
   describe('page range tests', () => {
