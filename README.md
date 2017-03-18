@@ -102,7 +102,8 @@ export default {
 | `marginPages` | `Number` | The number of displayed pages for margins. **default: 1** |
 | `prevText` | `String` | Text for the previous button. **default: Prev**  |
 | `nextText` | `String` | Text for the next button. **default: Next**  |
-| `initialPage` | `Number` | The initial page which selected. **default: 1** |
+| `initialPage` | `Number` | The index of initial page which selected. **default: 0** |
+| `forcePage` | `Number` | The index of overridden selected page. |
 | `clickHandler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
 | `containerClass` | `String` | CSS class name for the layout. |
 | `pageClass` | `String` | CSS class name for tag `li` of each page element. |

@@ -4,7 +4,7 @@
     :pageCount="20"
     :marginPages="2"
     :pageRange="4"
-    :initialPage="1"
+    :initialPage="0"
     :containerClass="'pagination'"
     :pageClass="'page-item'"
     :pageLinkClass="'page-link-item'"
