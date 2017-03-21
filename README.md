@@ -41,7 +41,7 @@ Include the source file.
 <!-- use the latest release -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <!-- or use the specify version -->
-<script src="https://unpkg.com/vuejs-paginate@0.7.1"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.8.0"></script>
 ```
 
 Register the component.
