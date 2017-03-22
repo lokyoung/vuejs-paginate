@@ -23,7 +23,7 @@ export default {
 <style lang="css">
 .page-item {
 }
-.page-link-item{
+.page-link-item {
 }
 .prev-item {
 }
