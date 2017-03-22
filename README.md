@@ -64,7 +64,7 @@ Vue.component('paginate', VuejsPaginate)
 </paginate>
 ```
 
-*NOTE*: In vue template, camelCase are kebab-case both supported. For example, you can either use prop `page-count` or `pageCount`. They are leading to the same result.
+*NOTE*: In vue template, camelCase and kebab-case are both supported. For example, you can either use prop `page-count` or `pageCount`. They are leading to the same result.
 
 So this is also avaliable
 ```html
