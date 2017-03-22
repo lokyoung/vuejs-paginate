@@ -51,6 +51,22 @@ Vue.component('paginate', VuejsPaginate)
 
 ## Usage
 
+### In Vue Template
+
+**Basic Usage**
+```html
+<paginate
+  :page-count="20"
+  :click-handler="functionName"
+  :prev-text="'Prev'"
+  :next-text="'Next'"
+  :container-class="'className'">
+</paginate>
+```
+
+*NOTE*: In vue template, camelCase are kebab-case both supported. For example, you can either use prop `page-count` or `pageCount`. They are leading to the same result.
+
+So this is also avaliable
 ```html
 <paginate
   :pageCount="20"
@@ -61,18 +77,18 @@ Vue.component('paginate', VuejsPaginate)
 </paginate>
 ```
 
-Example
+**Example**
 ```html
 <template>
   <paginate
-    :pageCount="20"
-    :pageRange="3"
-    :marginPages="2"
-    :clickHandler="clickCallback"
-    :prevText="'Prev'"
-    :nextText="'Next'"
-    :containerClass="'pagination'"
-    :pageClass="'page-item'">
+    :page-count="20"
+    :page-range="3"
+    :margin-pages="2"
+    :click-handler="clickCallback"
+    :prev-text="'Prev'"
+    :next-text="'Next'"
+    :container-class="'pagination'"
+    :page-class="'page-item'">
   </paginate>
 </template>
 
@@ -94,23 +110,57 @@ export default {
 </style>
 ```
 
+
+### In HTML
+Must use kebab-case for props in pure HTML.
+
+**Example**
+
+JavaScript
+```js
+Vue.component('paginate', VuejsPaginate)
+
+new Vue({
+  el: '#app',
+  methods: {
+    clickCallback: function(pageNum) {
+      console.log(pageNum)
+    }
+  }
+})
+```
+
+HTML
+```html
+<div id="app">
+  <paginate
+    :page-count="10"
+    :conatiner-class="pagination"
+    :prev-text="prev"
+    :next-text="next"
+    :click-handler="clickCallback">
+  </paginate>
+</div>
+```
+
 ## Props
 | Name | Type | Description |
 | --- | --- | --- |
-| `pageCount` | `Number` | Total count of pages. **required** |
-| `pageRange` | `Number` | Range of pages which displayed. **default: 3** |
-| `marginPages` | `Number` | The number of displayed pages for margins. **default: 1** |
-| `prevText` | `String` | Text for the previous button. **default: Prev**  |
-| `nextText` | `String` | Text for the next button. **default: Next**  |
-| `initialPage` | `Number` | The index of initial page which selected. **default: 0** |
-| `forcePage` | `Number` | The index of overridden selected page. |
-| `clickHandler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
-| `containerClass` | `String` | CSS class name for the layout. |
-| `pageClass` | `String` | CSS class name for tag `li` of each page element. |
-| `pageLinkClass` | `String` | CSS class name for tag `a` of each page element. |
-| `prevClass` | `String` | CSS class name for tag `li` of `previous` element. | | `prevLinkClass` | `String` | CSS class name for tag `a` of `previous` element. |
-| `nextClass` | `String` | CSS class name for tag `li` of `next` element. |
-| `nextLinkClass` | `String` | CSS class name for tag `a` of `next` element. |
+| `page-count` | `Number` | Total count of pages. **required** |
+| `page-range` | `Number` | Range of pages which displayed. **default: 3** |
+| `margin-pages` | `Number` | The number of displayed pages for margins. **default: 1** |
+| `prev-text` | `String` | Text for the previous button. **default: Prev**  |
+| `next-text` | `String` | Text for the next button. **default: Next**  |
+| `initial-page` | `Number` | The index of initial page which selected. **default: 0** |
+| `force-page` | `Number` | The index of overridden selected page. |
+| `click-handler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
+| `container-class` | `String` | CSS class name for the layout. |
+| `page-class` | `String` | CSS class name for tag `li` of each page element. |
+| `page-link-class` | `String` | CSS class name for tag `a` of each page element. |
+| `prev-class` | `String` | CSS class name for tag `li` of `previous` element. |
+| `prev-link-class` | `String` | CSS class name for tag `a` of `previous` element. |
+| `next-class` | `String` | CSS class name for tag `li` of `next` element. |
+| `next-link-class` | `String` | CSS class name for tag `a` of `next` element. |
 
 ## Demo
 You can see the demo for quickly understand how to use this package.
