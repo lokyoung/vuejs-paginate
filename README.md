@@ -163,6 +163,8 @@ HTML
 | `next-class` | `String` | CSS class name for tag `li` of `next` element. |
 | `next-link-class` | `String` | CSS class name for tag `a` of `next` element. |
 
+If for some reason you need to [programmatically modify the current page](https://github.com/lokyoung/vuejs-paginate/issues/16), declare a `ref` for your `<paginate>` component then, once `mounted`, you will be able to change the selected page using `this.$refs.paginate.selected = 42` . To bind such a modification to data change, use a [Vue `watch`](https://vuejs.org/v2/guide/computed.html#Watchers).
+
 ## Demo
 You can see the demo for quickly understand how to use this package.
 
