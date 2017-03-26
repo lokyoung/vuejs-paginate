@@ -33,7 +33,7 @@ import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 ```
 
-PS: For version <= 0.5.0, use `Vue.use(Paginate)` to register the component after import the package. But recommend to use the latest version now.
+*Note*: For version <= 0.5.0, use `Vue.use(Paginate)` to register the component after import the package. But recommend to use the latest version now.
 
 ### CDN
 
@@ -65,7 +65,7 @@ Vue.component('paginate', VuejsPaginate)
 </paginate>
 ```
 
-*NOTE*: In vue template, camelCase and kebab-case are both supported. For example, you can either use prop `page-count` or `pageCount`. They are leading to the same result.
+*Note*: In vue template, camelCase and kebab-case are both supported. For example, you can either use prop `page-count` or `pageCount`. They are leading to the same result.
 
 So this is also avaliable
 ```html
@@ -163,7 +163,7 @@ HTML
 | `next-class` | `String` | CSS class name for tag `li` of `next` element. |
 | `next-link-class` | `String` | CSS class name for tag `a` of `next` element. |
 
-If for some reason you need to [programmatically modify the current page](https://github.com/lokyoung/vuejs-paginate/issues/16), declare a `ref` for your `<paginate>` component then, once `mounted`, you will be able to change the selected page using `this.$refs.paginate.selected = 42` . To bind such a modification to data change, use a [Vue `watch`](https://vuejs.org/v2/guide/computed.html#Watchers).
+**Note**: If for some reason you need to [programmatically modify the current page](https://github.com/lokyoung/vuejs-paginate/issues/16), declare a `ref` for your `<paginate>` component then, once `mounted`, you will be able to change the selected page using `this.$refs.paginate.selected = 42` . To bind such a modification to data change, use a [Vue `watch`](https://vuejs.org/v2/guide/computed.html#Watchers).
 
 ## Demo
 You can see the demo for quickly understand how to use this package.
