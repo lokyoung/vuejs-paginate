@@ -1,6 +1,6 @@
 {
   "name": "vuejs-paginate",
-  "version": "0.8.4",
+  "version": "0.9.0",
   "description": "A simple pagination component for Vue.js",
   "main": "dist/index.js",
   "scripts": {
