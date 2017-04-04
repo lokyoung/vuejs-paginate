@@ -21,3 +21,4 @@ ratings:
 exclude_paths:
 - dist/
 - test/
+- demo/
