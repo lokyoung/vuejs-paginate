@@ -170,7 +170,7 @@ export default {
       return this.selected === 0
     },
     lastPageSelected() {
-      return this.selected === this.pageCount - 1
+      return (this.selected === this.pageCount - 1) || (this.pageCount === 0)
     }
   }
 }
