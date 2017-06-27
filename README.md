@@ -136,7 +136,7 @@ HTML
 <div id="app">
   <paginate
     :page-count="10"
-    :conatiner-class="pagination"
+    :container-class="pagination"
     :prev-text="prev"
     :next-text="next"
     :click-handler="clickCallback">
