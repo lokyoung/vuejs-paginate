@@ -162,6 +162,7 @@ HTML
 | `prev-link-class` | `String` | CSS class name for tag `a` of `previous` element. |
 | `next-class` | `String` | CSS class name for tag `li` of `next` element. |
 | `next-link-class` | `String` | CSS class name for tag `a` of `next` element. |
+| `no-li-surround` | `Boolean` | Support no `li` tag surround `a` tag. **default: false** |
 
 **Note**: If for some reason you need to [programmatically modify the current page](https://github.com/lokyoung/vuejs-paginate/issues/16), declare a `ref` for your `<paginate>` component then, once `mounted`, you will be able to change the selected page using `this.$refs.paginate.selected = 42` . To bind such a modification to data change, use a [Vue `watch`](https://vuejs.org/v2/guide/computed.html#Watchers).
 
