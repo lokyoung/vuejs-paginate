@@ -16,7 +16,9 @@
     <a @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, { disabled: firstPageSelected() }]" tabindex="0">{{ prevText }}</a>
     <template v-for="page in pages">
       <a v-if="page.disabled" :class="[pageLinkClass, { active: page.selected, disabled: page.disabled }]" tabindex="0">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, { active: page.selected, disabled: page.disabled }]" tabindex="0">{{ page.content }}</a>
+      <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, { active: page.selected, disabled: page.disabled }]" tabindex="0">
+        {{ page.content }}
+      </a>
     </template>
     <a @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, { disabled: lastPageSelected() }]" tabindex="0">{{ nextText }}</a>
   </div>
@@ -38,7 +40,7 @@ export default {
     },
     clickHandler: {
       type: Function,
-      default: () => {}
+      default: () => { }
     },
     pageRange: {
       type: Number,
@@ -68,7 +70,7 @@ export default {
     prevClass: {
       type: String
     },
-    prevLinkClass:{
+    prevLinkClass: {
       type: String
     },
     nextClass: {
@@ -82,7 +84,7 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       selected: this.initialPage
     }
@@ -117,7 +119,8 @@ export default {
           leftPart = this.pageRange - rightPart
         }
 
-        for (let index = 0; index < this.pageCount; index++) {
+        // items logic extracted into this function
+        let mapItems = index => {
           let page = {
             index: index,
             content: index + 1,
@@ -126,7 +129,7 @@ export default {
 
           if (index <= this.marginPages - 1 || index >= this.pageCount - this.marginPages) {
             items[index] = page
-            continue
+            return
           }
 
           let breakView = {
@@ -150,32 +153,58 @@ export default {
 
           if ((index >= this.selected - leftPart) && (index <= this.selected + rightPart)) {
             items[index] = page
-            continue
+            return
           }
         }
+
+        // 1st - loop thru low end of margin pages
+        for (let i = 0; i < this.marginPages; i++) {
+          mapItems(i);
+        }
+
+        // 2nd - loop thru high end of margin pages
+        for (let i = this.pageCount - 1; i >= this.pageCount - this.marginPages; i--) {
+          mapItems(i);
+        }
+
+        // 3rd - loop thru selected range
+        let selectedRangeLow = 0;
+        if (this.selected - this.pageRange > 0) {
+          selectedRangeLow = this.selected - this.pageRange;
+        }
+
+        let selectedRangeHigh = this.pageCount;
+        if (this.selected + this.pageRange < this.pageCount) {
+          selectedRangeHigh = this.selected + this.pageRange;
+        }
+
+        for (let i = selectedRangeLow; i < selectedRangeHigh; i++) {
+          mapItems(i);
+        }
+
       }
       return items
     }
   },
   methods: {
-    handlePageSelected (selected) {
+    handlePageSelected(selected) {
       if (this.selected === selected) return
 
       this.selected = selected
 
       this.clickHandler(this.selected + 1)
     },
-    prevPage () {
+    prevPage() {
       if (this.selected <= 0) return
 
-      this.selected --
+      this.selected--
 
       this.clickHandler(this.selected + 1)
     },
-    nextPage () {
+    nextPage() {
       if (this.selected >= this.pageCount - 1) return
 
-      this.selected ++
+      this.selected++
 
       this.clickHandler(this.selected + 1)
     },
