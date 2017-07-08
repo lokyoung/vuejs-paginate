@@ -41,9 +41,9 @@
     "phantomjs-prebuilt": "^2.1.14",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
-    "vue": "^2.1.8",
+    "vue": "^2.3.4",
     "vue-loader": "^10.0.2",
-    "vue-template-compiler": "^2.1.8",
+    "vue-template-compiler": "^2.3.4",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-merge": "^2.6.1"
