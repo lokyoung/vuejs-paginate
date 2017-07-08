@@ -168,17 +168,17 @@ export default {
         }
 
         // 3rd - loop thru selected range
-        let selectedRange_low = 0;
+        let selectedRangeLow = 0;
         if (this.selected - this.pageRange > 0) {
-          selectedRange_low = this.selected - this.pageRange;
+          selectedRangeLow = this.selected - this.pageRange;
         }
 
-        let selectedRange_high = this.pageCount;
+        let selectedRangeHigh = this.pageCount;
         if (this.selected + this.pageRange < this.pageCount) {
-          selectedRange_high = this.selected + this.pageRange;
+          selectedRangeHigh = this.selected + this.pageRange;
         }
 
-        for (let i = selectedRange_low; i < selectedRange_high; i++) {
+        for (let i = selectedRangeLow; i < selectedRangeHigh; i++) {
           mapItems(i);
         }
 
