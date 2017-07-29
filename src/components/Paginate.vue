@@ -1,26 +1,26 @@
 <template>
   <ul :class="containerClass" v-if="!noLiSurround">
     <li :class="[prevClass, { disabled: firstPageSelected() }]">
-      <a @click="prevPage()" @keyup.enter="prevPage()" :class="prevLinkClass" tabindex="0">{{ prevText }}</a>
+      <a @click="prevPage()" @keyup.enter="prevPage()" :class="prevLinkClass" tabindex="0"><slot name="prev">{{ prevText }}</slot></a>
     </li>
     <li v-for="page in pages" :class="[pageClass, { active: page.selected, disabled: page.disabled }]">
       <a v-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
       <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
     </li>
     <li :class="[nextClass, { disabled: lastPageSelected() }]">
-      <a @click="nextPage()" @keyup.enter="nextPage()" :class="nextLinkClass" tabindex="0">{{ nextText }}</a>
+      <a @click="nextPage()" @keyup.enter="nextPage()" :class="nextLinkClass" tabindex="0"><slot name="next">{{ nextText }}</slot></a>
     </li>
   </ul>
 
   <div :class="containerClass" v-else>
-    <a @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, { disabled: firstPageSelected() }]" tabindex="0">{{ prevText }}</a>
+    <a @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, { disabled: firstPageSelected() }]" tabindex="0"><slot name="prev">{{ prevText }}</slot></a>
     <template v-for="page in pages">
       <a v-if="page.disabled" :class="[pageLinkClass, { active: page.selected, disabled: page.disabled }]" tabindex="0">{{ page.content }}</a>
       <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, { active: page.selected, disabled: page.disabled }]" tabindex="0">
         {{ page.content }}
       </a>
     </template>
-    <a @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, { disabled: lastPageSelected() }]" tabindex="0">{{ nextText }}</a>
+    <a @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, { disabled: lastPageSelected() }]" tabindex="0"><slot name="next">{{ nextText }}</slot></a>
   </div>
 </template>
 
