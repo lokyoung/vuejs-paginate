@@ -144,6 +144,26 @@ HTML
 </div>
 ```
 
+### Customize prev and next button inner HTML (experimental)
+You can customize the inner HTML of previous and next button with `slot` tag.
+The name of the previous and next button is `prevContent` and `nextContent`.
+
+Example
+```html
+<paginate
+  :page-count="10"
+  :container-class="pagination"
+  :prev-text="prev"
+  :next-text="next"
+  :click-handler="clickCallback">
+
+  <span slot="prevContent">Changed previous button</span>
+  <span slot="nextContent">Changed next button</span>
+
+</paginate>
+```
+
+
 ## Props
 | Name | Type | Description |
 | --- | --- | --- |
