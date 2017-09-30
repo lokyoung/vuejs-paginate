@@ -3,7 +3,7 @@
     <li :class="[prevClass, { disabled: firstPageSelected() }]">
       <a @click="prevPage()" @keyup.enter="prevPage()" :class="prevLinkClass" tabindex="0"><slot name="prevContent">{{ prevText }}</slot></a>
     </li>
-    <li v-for="page in pages" :class="[pageClass, { active: page.selected, disabled: page.disabled }]">
+    <li v-for="page in pages" :class="[pageClass, page.selected ? activeClass : '', { disabled: page.disabled } ]">
       <a v-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
       <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
     </li>
@@ -15,7 +15,7 @@
   <div :class="containerClass" v-else>
     <a @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, { disabled: firstPageSelected() }]" tabindex="0"><slot name="prevContent">{{ prevText }}</slot></a>
     <template v-for="page in pages">
-      <a v-if="page.disabled" :class="[pageLinkClass, { active: page.selected, disabled: page.disabled }]" tabindex="0">{{ page.content }}</a>
+      <a v-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', { disabled: page.disabled }]" tabindex="0">{{ page.content }}</a>
       <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, { active: page.selected, disabled: page.disabled }]" tabindex="0">
         {{ page.content }}
       </a>
@@ -78,6 +78,10 @@ export default {
     },
     nextLinkClass: {
       type: String
+    },
+    activeClass: {
+      type: String,
+      default: 'active'
     },
     noLiSurround: {
       type: Boolean,
