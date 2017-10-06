@@ -168,12 +168,12 @@ export default {
         }
 
         // Check if there is breakView in the left of selected range
-        if (selectedRangeLow - 1 >= this.marginPages) {
+        if (selectedRangeLow > this.marginPages) {
           setBreakView(selectedRangeLow - 1)
         }
 
         // Check if there is breakView in the right of selected range
-        if (selectedRangeHigh <= this.pageCount - this.marginPages - 1) {
+        if (selectedRangeHigh + 1 < this.pageCount - this.marginPages) {
           setBreakView(selectedRangeHigh + 1)
         }
       }
