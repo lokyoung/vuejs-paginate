@@ -123,52 +123,33 @@ export default {
           leftPart = this.pageRange - rightPart
         }
 
-        // items logic extracted into this function
-        let mapItems = index => {
+        let setPageItem = index => {
           let page = {
             index: index,
             content: index + 1,
             selected: index === this.selected
           }
 
-          if (index <= this.marginPages - 1 || index >= this.pageCount - this.marginPages) {
-            items[index] = page
-            return
-          }
+          items[index] = page
+        }
 
+        let setBreakView = index => {
           let breakView = {
             content: '...',
             disabled: true
           }
 
-          if ((this.selected - leftPart) > this.marginPages && items[this.marginPages] !== breakView) {
-            items[this.marginPages] = breakView
-          }
-
-          if ((this.selected + rightPart) < (this.pageCount - this.marginPages - 1) && items[this.pageCount - this.marginPages - 1] !== breakView) {
-            items[this.pageCount - this.marginPages - 1] = breakView
-          }
-
-          let overCount = this.selected + rightPart - this.pageCount + 1
-
-          if (overCount > 0 && index === this.selected - leftPart - overCount) {
-            items[index] = page
-          }
-
-          if ((index >= this.selected - leftPart) && (index <= this.selected + rightPart)) {
-            items[index] = page
-            return
-          }
+          items[index] = breakView
         }
 
         // 1st - loop thru low end of margin pages
         for (let i = 0; i < this.marginPages; i++) {
-          mapItems(i);
+          setPageItem(i);
         }
 
         // 2nd - loop thru high end of margin pages
         for (let i = this.pageCount - 1; i >= this.pageCount - this.marginPages; i--) {
-          mapItems(i);
+          setPageItem(i);
         }
 
         // 3rd - loop thru selected range
@@ -182,10 +163,19 @@ export default {
           selectedRangeHigh = this.selected + this.pageRange;
         }
 
-        for (let i = selectedRangeLow; i < selectedRangeHigh; i++) {
-          mapItems(i);
+        for (let i = selectedRangeLow; i <= selectedRangeHigh && i <= this.pageCount - 1; i++) {
+          setPageItem(i);
         }
 
+        // Check if there is breakView in the left of selected range
+        if (selectedRangeLow > this.marginPages) {
+          setBreakView(selectedRangeLow - 1)
+        }
+
+        // Check if there is breakView in the right of selected range
+        if (selectedRangeHigh + 1 < this.pageCount - this.marginPages) {
+          setBreakView(selectedRangeHigh + 1)
+        }
       }
       return items
     }
