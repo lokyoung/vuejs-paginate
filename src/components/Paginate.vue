@@ -147,10 +147,7 @@ export default {
           setPageItem(i);
         }
 
-        // 2nd - loop thru high end of margin pages
-        for (let i = this.pageCount - 1; i >= this.pageCount - this.marginPages; i--) {
-          setPageItem(i);
-        }
+        
 
         // 3rd - loop thru selected range
         let selectedRangeLow = 0;
@@ -175,6 +172,10 @@ export default {
         // Check if there is breakView in the right of selected range
         if (selectedRangeHigh + 1 < this.pageCount - this.marginPages) {
           setBreakView(selectedRangeHigh + 1)
+        }
+        // 2nd - loop thru high end of margin pages
+        for (let i = this.pageCount - 1; i >= this.pageCount - this.marginPages; i--) {
+          setPageItem(i);
         }
       }
       return items
