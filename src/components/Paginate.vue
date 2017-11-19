@@ -147,14 +147,13 @@ export default {
           setPageItem(i);
         }
 
-        
-
-        // 3rd - loop thru selected range
+        // 2nd - loop thru selected range
         let selectedRangeLow = 0;
         if (this.selected - this.pageRange > 0) {
           selectedRangeLow = this.selected - this.pageRange;
         }
 
+        // 3rd - loop thru high end of margin pages
         let selectedRangeHigh = this.pageCount;
         if (this.selected + this.pageRange < this.pageCount) {
           selectedRangeHigh = this.selected + this.pageRange;
