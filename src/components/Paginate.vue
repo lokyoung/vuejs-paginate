@@ -1,18 +1,29 @@
 <template>
   <ul :class="containerClass" v-if="!noLiSurround">
+    <li :class="[pageClass, firstPageSelected() ? disabledClass : '']">
+      <a @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :class="pageLinkClass">{{ firstText }}</a>
+    </li>
+
     <li :class="[prevClass, firstPageSelected() ? disabledClass : '']">
       <a @click="prevPage()" @keyup.enter="prevPage()" :class="prevLinkClass" tabindex="0"><slot name="prevContent">{{ prevText }}</slot></a>
     </li>
+
     <li v-for="page in pages" :class="[pageClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '']">
       <a v-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
       <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
     </li>
+
     <li :class="[nextClass, lastPageSelected() ? disabledClass : '']">
       <a @click="nextPage()" @keyup.enter="nextPage()" :class="nextLinkClass" tabindex="0"><slot name="nextContent">{{ nextText }}</slot></a>
+    </li>
+
+    <li :class="[pageClass, lastPageSelected() ? disabledClass : '']">
+      <a @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="pageLinkClass">{{ lastText }}</a>
     </li>
   </ul>
 
   <div :class="containerClass" v-else>
+    <a @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :class="[pageLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0">{{ firstText }}</a>
     <a @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0"><slot name="prevContent">{{ prevText }}</slot></a>
     <template v-for="page in pages">
       <a v-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '']" tabindex="0">{{ page.content }}</a>
@@ -21,6 +32,7 @@
       </a>
     </template>
     <a @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0"><slot name="nextContent">{{ nextText }}</slot></a>
+    <a @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0">{{ lastText }}</a>
   </div>
 </template>
 
@@ -90,6 +102,18 @@ export default {
     noLiSurround: {
       type: Boolean,
       default: false
+    },
+    firstLastButton: {
+      type: Boolean,
+      default: false
+    },
+    firstText: {
+      type: String,
+      default: 'First'
+    },
+    lastText: {
+      type: String,
+      default: 'Last'
     }
   },
   data() {
@@ -211,6 +235,16 @@ export default {
     },
     lastPageSelected() {
       return (this.selected === this.pageCount - 1) || (this.pageCount === 0)
+    },
+    selectFirstPage() {
+      this.selected = 0
+
+      this.clickHandler(this.selected)
+    },
+    selectLastPage() {
+      this.selected = this.pageCount - 1
+
+      this.clickHandler(this.selected)
     }
   }
 }
