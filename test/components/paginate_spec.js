@@ -128,4 +128,32 @@ describe('Paginate', () => {
       expect(vm.$el.querySelector(`li:nth-child(4) a`).textContent).to.equal('7')
     })
   })
+
+  describe('enable first and last button', () => {
+    it('Show fist and last button', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          initialPage: 1,
+          firstLastButton: true
+        }
+      }).$mount()
+      const firstButton = vm.$el.querySelector("li:first-child a")
+      const lastButton = vm.$el.querySelector("li:last-child a")
+      const activeItem = vm.$el.querySelector(".active a")
+      expect(firstButton.textContent).to.equal("First")
+      expect(lastButton.textContent).to.equal("Last")
+      expect(activeItem.textContent).to.equal("2")
+
+      firstButton.click()
+      Vue.nextTick(() => {
+        expect(activeItem.textContent).to.equal("1")
+
+        lastButton.click()
+        Vue.nextTick(() => {
+          expect(activeItem.textContent).to.equal("10")
+        })
+      })
+    })
+  })
 })
