@@ -186,8 +186,8 @@ Example
 | `disabled-class` | `String` | CSS class name for disabled page element. **default: disabled** |
 | `no-li-surround` | `Boolean` | Support no `li` tag surround `a` tag. **default: false** |
 | `first-last-button` | `Boolean` | Support buttons to turn to the first and last page. **default: false** |
-| `first-button-text` | `String` | Text for first button. **default: 'First'** |
-| `last-button-text` | `String` | Text for last button. **default: 'Last'** |
+| `first-button-text` | `String` | Text for first button. (Not visible when `first-last-button` is false.) **default: 'First'** |
+| `last-button-text` | `String` | Text for last button. (Not visible when `first-last-button` is false.) **default: 'Last'** |
 
 **Note**: If for some reason you need to [programmatically modify the current page](https://github.com/lokyoung/vuejs-paginate/issues/16), declare a `ref` for your `<paginate>` component then, once `mounted`, you will be able to change the selected page using `this.$refs.paginate.selected = 42` . To bind such a modification to data change, use a [Vue `watch`](https://vuejs.org/v2/guide/computed.html#Watchers).
 
