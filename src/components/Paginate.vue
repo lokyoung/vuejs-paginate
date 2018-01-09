@@ -27,9 +27,7 @@
     <a @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0"><slot name="prevContent">{{ prevText }}</slot></a>
     <template v-for="page in pages">
       <a v-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '']" tabindex="0">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '']" tabindex="0">
-        {{ page.content }}
-      </a>
+      <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '']" tabindex="0">{{ page.content }}</a>
     </template>
     <a @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0"><slot name="nextContent">{{ nextText }}</slot></a>
     <a v-if="firstLastButton" @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0">{{ lastButtonText }}</a>

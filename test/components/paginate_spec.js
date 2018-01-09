@@ -155,5 +155,32 @@ describe('Paginate', () => {
         })
       })
     })
+
+    it('Show fist and last button when no li surround', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          initialPage: 1,
+          noLiSurround: true,
+          firstLastButton: true
+        }
+      }).$mount()
+      const firstButton = vm.$el.querySelector("a:first-child")
+      const lastButton = vm.$el.querySelector("a:last-child")
+      const activeItem = vm.$el.querySelector("a.active")
+      expect(firstButton.textContent).to.equal("First")
+      expect(lastButton.textContent).to.equal("Last")
+      expect(activeItem.textContent).to.equal("2")
+
+      // firstButton.click()
+      // Vue.nextTick(() => {
+      //   expect(activeItem.textContent).to.equal("1")
+      //
+      //   lastButton.click()
+      //   Vue.nextTick(() => {
+      //     expect(activeItem.textContent).to.equal("10")
+      //   })
+      // })
+    })
   })
 })
