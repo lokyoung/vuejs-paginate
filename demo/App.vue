@@ -35,6 +35,25 @@
         :no-li-surround="true"
       ></paginate>
     </div>
+
+    <div>
+      <h3>Pagination component without margin pages</h3>
+      <!-- The 'pagination' style using in containerClass comes from bootstrap -->
+      <paginate
+        :page-count="10"
+        :margin-pages="0"
+        :page-range="5"
+        :initial-page="0"
+        :container-class="'pagination'"
+        :page-class="'page-item'"
+        :page-link-class="'page-link-item'"
+        :prev-class="'ignore prev-item'"
+        :prev-link-class="'prev-link-item'"
+        :next-class="'ignore next-item'"
+        :next-link-class="'next-link-item'"
+        :disabled-class="'ignore disabled'"
+      ></paginate>
+    </div>
   </div>
 </template>
 
