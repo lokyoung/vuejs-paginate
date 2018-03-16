@@ -183,4 +183,46 @@ describe('Paginate', () => {
       // })
     })
   })
+
+  describe('prev and next button hide', () => {
+    it('hide prev button when there is no previous page', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          initialPage: 0,
+          hidePrevNext: true
+        }
+      }).$mount()
+
+      const firstButton = vm.$el.querySelector("li:first-child a")
+      expect(firstButton.textContent).to.equal("1")
+    })
+
+    it('hide next button when there is no next page', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          initialPage: 9,
+          hidePrevNext: true
+        }
+      }).$mount()
+
+      const lastButton = vm.$el.querySelector("li:last-child a")
+      expect(lastButton.textContent).to.equal("10")
+    })
+
+    it('hide next and prev button when only one page', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 1,
+          hidePrevNext: true
+        }
+      }).$mount()
+
+      const firstButton = vm.$el.querySelector("li:first-child a")
+      const lastButton = vm.$el.querySelector("li:last-child a")
+      expect(firstButton.textContent).to.equal("1")
+      expect(lastButton.textContent).to.equal("1")
+    })
+  })
 })
