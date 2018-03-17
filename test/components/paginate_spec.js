@@ -121,11 +121,56 @@ describe('Paginate', () => {
       const vm = new Component({
         propsData: {
           pageCount: 10,
-          initialPage: 9
+          initialPage: 9,
         }
       }).$mount()
       expect(vm.$el.querySelector(`li:nth-child(3) a`).textContent).to.equal('...')
-      expect(vm.$el.querySelector(`li:nth-child(4) a`).textContent).to.equal('7')
+      expect(vm.$el.querySelector(`li:nth-child(4) a`).textContent).to.equal('8')
+    })
+
+    it('page range is correct when current page is 0', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          pageRange: 5,
+          marginPages: 0,
+          initialPage: 0,
+          prevClass: 'ignore',
+          nextClass: 'ignore',
+          disabledClass: 'ignore'
+        }
+      }).$mount()
+      expect(vm.$el.querySelectorAll("li:not(.ignore) a").length).to.equal(5)
+    })
+
+    it('page range is correct when current page is middle page', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          pageRange: 5,
+          marginPages: 0,
+          initialPage: 4,
+          prevClass: 'ignore',
+          nextClass: 'ignore',
+          disabledClass: 'ignore'
+        }
+      }).$mount()
+      expect(vm.$el.querySelectorAll("li:not(.ignore) a").length).to.equal(5)
+    })
+
+    it('page range is correct when current page is last page', () => {
+      const vm = new Component({
+        propsData: {
+          pageCount: 10,
+          pageRange: 5,
+          marginPages: 0,
+          initialPage: 9,
+          prevClass: 'ignore',
+          nextClass: 'ignore',
+          disabledClass: 'ignore'
+        }
+      }).$mount()
+      expect(vm.$el.querySelectorAll("li:not(.ignore) a").length).to.equal(5)
     })
   })
 

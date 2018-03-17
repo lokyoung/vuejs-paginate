@@ -142,16 +142,7 @@ export default {
           items[index] = page
         }
       } else {
-        let leftPart = this.pageRange / 2
-        let rightPart = this.pageRange - leftPart
-
-        if (this.selected < leftPart) {
-          leftPart = this.selected
-          rightPart = this.pageRange - leftPart
-        } else if (this.selected > this.pageCount - this.pageRange / 2) {
-          rightPart = this.pageCount - this.selected
-          leftPart = this.pageRange - rightPart
-        }
+        const halfPageRange = Math.floor(this.pageRange / 2)
 
         let setPageItem = index => {
           let page = {
@@ -179,14 +170,14 @@ export default {
 
         // 2nd - loop thru selected range
         let selectedRangeLow = 0;
-        if (this.selected - this.pageRange > 0) {
-          selectedRangeLow = this.selected - this.pageRange;
+        if (this.selected - halfPageRange > 0) {
+          selectedRangeLow = this.selected - halfPageRange;
         }
 
-        // 3rd - loop thru high end of margin pages
-        let selectedRangeHigh = this.pageCount;
-        if (this.selected + this.pageRange < this.pageCount) {
-          selectedRangeHigh = this.selected + this.pageRange;
+        let selectedRangeHigh = selectedRangeLow + this.pageRange - 1;
+        if (selectedRangeHigh >= this.pageCount) {
+          selectedRangeHigh = this.pageCount - 1;
+          selectedRangeLow = selectedRangeHigh - this.pageRange + 1;
         }
 
         for (let i = selectedRangeLow; i <= selectedRangeHigh && i <= this.pageCount - 1; i++) {
@@ -202,7 +193,8 @@ export default {
         if (selectedRangeHigh + 1 < this.pageCount - this.marginPages) {
           setBreakView(selectedRangeHigh + 1)
         }
-        // 2nd - loop thru high end of margin pages
+
+        // 3rd - loop thru high end of margin pages
         for (let i = this.pageCount - 1; i >= this.pageCount - this.marginPages; i--) {
           setPageItem(i);
         }
