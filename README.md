@@ -168,7 +168,7 @@ Example
 | Name | Type | Description |
 | --- | --- | --- |
 | `page-count` | `Number` | Total count of pages. **required** |
-| `page-range` | `Number` | Range of pages which displayed. **default: 3** *(Note: It is recommended to use an odd number, so that the same number of pages are displayed before and after the active page. If using an even number, there will be one more page number before the active page than after the current page)* |
+| `page-range` | `Number` | Range of pages which displayed. **default: 3**  *(Note: It is recommended to use an odd number, so that the same number of pages are displayed before and after the active page. If using an even number, there will be one more page number before the active page than after the current page)* |
 | `margin-pages` | `Number` | The number of displayed pages for margins. **default: 1** |
 | `prev-text` | `String` | Text for the previous button. **default: Prev**  |
 | `next-text` | `String` | Text for the next button. **default: Next**  |
