@@ -8,7 +8,7 @@
       <paginate
         :page-count="20"
         :margin-pages="2"
-        :page-range="4"
+        :page-range="5"
         :initial-page="0"
         :container-class="'pagination'"
         :page-class="'page-item'"
@@ -26,7 +26,7 @@
       <paginate
         :page-count="20"
         :margin-pages="2"
-        :page-range="4"
+        :page-range="5"
         :initial-page="0"
         :container-class="'ui pagination menu'"
         :page-link-class="'item'"
