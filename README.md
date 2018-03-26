@@ -148,6 +148,7 @@ HTML
 You can customize the inner HTML of the previous button, next button, and break view indicator, with the `slot` tag.
 
 **Slot names**
+
 | Name | Description |
 | --- | --- |
 | `prevContent` | Previous button |
