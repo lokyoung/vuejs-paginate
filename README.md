@@ -144,11 +144,17 @@ HTML
 </div>
 ```
 
-### Customize prev and next button inner HTML (experimental)
-You can customize the inner HTML of previous and next button with `slot` tag.
-The name of the previous and next button is `prevContent` and `nextContent`.
+### Customize button HTML (experimental)
+You can customize the inner HTML of the previous button, next button, and break view indicator, with the `slot` tag.
 
-Example
+**Slot names**
+| Name | Description |
+| --- | --- |
+| `prevContent` | Previous button |
+| `nextContent` | Next button |
+| `breakViewContent` | Break view indicator |
+
+**Example**
 ```html
 <paginate
   :page-count="10"
@@ -159,6 +165,13 @@ Example
 
   <span slot="prevContent">Changed previous button</span>
   <span slot="nextContent">Changed next button</span>
+  <span slot="breakViewContent">
+    <svg width="16" height="4" viewBox="0 0 16 4">
+      <circle fill="#999999" cx="2" cy="2" r="2" />
+      <circle fill="#999999" cx="8" cy="2" r="2" />
+      <circle fill="#999999" cx="14" cy="2" r="2" />
+    </svg>
+  </span>
 
 </paginate>
 ```
@@ -172,6 +185,7 @@ Example
 | `margin-pages` | `Number` | The number of displayed pages for margins. **default: 1** |
 | `prev-text` | `String` | Text for the previous button. **default: Prev**  |
 | `next-text` | `String` | Text for the next button. **default: Next**  |
+| `break-view-text` | `String` | Text for the break view button. **default: `…`**  |
 | `initial-page` | `Number` | The index of initial page which selected. **default: 0** |
 | `force-page` | `Number` | The index of overridden selected page. |
 | `click-handler` | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
@@ -182,6 +196,8 @@ Example
 | `prev-link-class` | `String` | CSS class name for tag `a` of `previous` element. |
 | `next-class` | `String` | CSS class name for tag `li` of `next` element. |
 | `next-link-class` | `String` | CSS class name for tag `a` of `next` element. |
+| `break-view-class` | `String` | CSS class name for tag `li` of `break view` element. |
+| `break-view-link-class` | `String` | CSS class name for tag `a` of `break view` element. |
 | `active-class` | `String` | CSS class name for active page element. **default: active** |
 | `disabled-class` | `String` | CSS class name for disabled page element. **default: disabled** |
 | `no-li-surround` | `Boolean` | Support no `li` tag surround `a` tag. **default: false** |

@@ -17,6 +17,8 @@
         :prev-link-class="'prev-link-item'"
         :next-class="'next-item'"
         :next-link-class="'next-link-item'"
+        :break-view-class="'break-view'"
+        :break-view-link-class="'break-view-link'"
       ></paginate>
     </div>
 
@@ -32,6 +34,7 @@
         :page-link-class="'item'"
         :prev-link-class="'item'"
         :next-link-class="'item'"
+        :break-view-link-class="'break-view-link'"
         :no-li-surround="true"
       ></paginate>
     </div>
@@ -54,6 +57,34 @@
         :disabled-class="'ignore disabled'"
       ></paginate>
     </div>
+
+
+    <div>
+      <h3>Pagination component with SVG for view break</h3>
+      <paginate
+        :page-count="20"
+        :margin-pages="2"
+        :page-range="4"
+        :initial-page="0"
+        :container-class="'pagination'"
+        :page-class="'page-item'"
+        :page-link-class="'page-link-item'"
+        :prev-class="'prev-item'"
+        :prev-link-class="'prev-link-item'"
+        :next-class="'next-item'"
+        :next-link-class="'next-link-item'"
+        :break-view-class="'break-view'"
+        :break-view-link-class="'break-view-link'"
+      >
+        <span slot="breakViewContent">
+          <svg width="16" height="4" viewBox="0 0 16 4">
+            <circle fill="#999999" cx="2" cy="2" r="2" />
+            <circle fill="#999999" cx="8" cy="2" r="2" />
+            <circle fill="#999999" cx="14" cy="2" r="2" />
+          </svg>
+        </span>
+      </paginate>
+    </div>
   </div>
 </template>
 
@@ -74,5 +105,9 @@ export default {
 .next-item {
 }
 .next-link-item {
+}
+.break-view {
+}
+.break-view-item {
 }
 </style>
