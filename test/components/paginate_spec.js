@@ -122,9 +122,11 @@ describe('Paginate', () => {
         propsData: {
           pageCount: 10,
           initialPage: 9,
+          breakViewClass: 'break-view'
         }
       }).$mount()
-      expect(vm.$el.querySelector(`li:nth-child(3) a`).textContent).to.equal('...')
+      expect(vm.$el.querySelectorAll(`li:nth-child(3).break-view`).length).to.equal(1)
+      expect(vm.$el.querySelector(`li:nth-child(3) a`).textContent).to.equal('…')
       expect(vm.$el.querySelector(`li:nth-child(4) a`).textContent).to.equal('8')
     })
 
@@ -270,4 +272,25 @@ describe('Paginate', () => {
       expect(lastButton.textContent).to.equal("1")
     })
   })
+  
+  it('Use custom text', () => {
+    const vm = new Component({
+      propsData: {
+        pageCount: 10,
+        prevClass: 'prev-item',
+        nextClass: 'next-item',
+        breakViewClass: 'break-view',
+        prevText: 'PREVIOUS TEXT',
+        nextText: 'NEXT TEXT',
+        breakViewText: 'BREAK VIEW TEXT'
+      }
+    }).$mount()
+    const prevButton = vm.$el.querySelector('.prev-item')
+    const nextButton = vm.$el.querySelector('.next-item')
+    const breakView = vm.$el.querySelector('.break-view')
+    expect(prevButton.textContent).to.equal('PREVIOUS TEXT')
+    expect(nextButton.textContent).to.equal('NEXT TEXT')
+    expect(breakView.textContent).to.equal('BREAK VIEW TEXT')
+  })
+
 })
