@@ -9,8 +9,8 @@
     </li>
 
     <li v-for="page in pages" :class="[pageClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '', page.breakView ? breakViewClass: '']">
-      <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass]" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
-      <a v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
+      <a v-if="page.breakView" @click="expandBreakView(page.index)" @keyup.enter="expandBreakView(page.index)" :class="[pageLinkClass, breakViewLinkClass]" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
+      <!-- <a v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a> -->
       <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
     </li>
 
@@ -27,8 +27,8 @@
     <a v-if="firstLastButton" @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :class="[pageLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0">{{ firstButtonText }}</a>
     <a v-if="!(firstPageSelected() && hidePrevNext)" @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0"><slot name="prevContent">{{ prevText }}</slot></a>
     <template v-for="page in pages">
-      <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
-      <a v-else-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]" tabindex="0">{{ page.content }}</a>
+      <a v-if="page.breakView" @click="expandBreakView(page.index)" @keyup.enter="expandBreakView(page.index)":class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
+      <!-- <a v-else-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]" tabindex="0">{{ page.content }}</a> -->
       <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, page.selected ? activeClass : '']" tabindex="0">{{ page.content }}</a>
     </template>
     <a v-if="!(lastPageSelected() && hidePrevNext)" @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0"><slot name="nextContent">{{ nextText }}</slot></a>
@@ -132,7 +132,9 @@ export default {
   },
   data() {
     return {
-      selected: this.initialPage
+      selected: this.initialPage,
+      showLeftBreakView: true,
+      showRightBreakView: true
     }
   },
   beforeUpdate() {
@@ -160,16 +162,17 @@ export default {
           let page = {
             index: index,
             content: index + 1,
-            selected: index === this.selected
+            selected: index === this.selected,
           }
 
           items[index] = page
         }
 
-        let setBreakView = index => {
+        let setBreakView = (index, breakViewType) => {
           let breakView = {
-            disabled: true,
-            breakView: true
+            index: index,
+            breakView: true,
+	          breakViewType: breakViewType
           }
 
           items[index] = breakView
@@ -181,12 +184,30 @@ export default {
         }
 
         // 2nd - loop thru selected range
+
         let selectedRangeLow = 0;
-        if (this.selected - halfPageRange > 0) {
-          selectedRangeLow = this.selected - halfPageRange;
+
+        // If we show leftBreakView, standard code is used
+        // If we hide leftBreaView we start form index = 0
+        if (this.showLeftBreakView) {
+          if (this.selected - halfPageRange > 0) {
+            selectedRangeLow = this.selected - halfPageRange;
+          }
         }
 
-        let selectedRangeHigh = selectedRangeLow + this.pageRange - 1;
+        let selectedRangeHigh;
+
+        // If we show leftBreakView and rightBreakView standard code is used
+        // If we hide leftBreakView but show rightBreakView selectedRangeHigh is selected button + halfPageRange
+        // If we hide leftBreakView and rightBreakView we show all pages
+        if (this.showLeftBreakView && this.showRightBreakView) {
+          selectedRangeHigh = selectedRangeLow + this.pageRange - 1;
+        } else if (!this.showLeftBreakView && this.showRightBreakView) {
+          selectedRangeHigh = this.selected + halfPageRange;
+        }else {
+          selectedRangeHigh = this.pageCount - 1;
+        } // end if/else
+
         if (selectedRangeHigh >= this.pageCount) {
           selectedRangeHigh = this.pageCount - 1;
           selectedRangeLow = selectedRangeHigh - this.pageRange + 1;
@@ -197,19 +218,20 @@ export default {
         }
 
         // Check if there is breakView in the left of selected range
-        if (selectedRangeLow > this.marginPages) {
-          setBreakView(selectedRangeLow - 1)
+        if (selectedRangeLow > this.marginPages && this.showLeftBreakView) {
+          setBreakView(selectedRangeLow - 1, 'left')
         }
 
         // Check if there is breakView in the right of selected range
-        if (selectedRangeHigh + 1 < this.pageCount - this.marginPages) {
-          setBreakView(selectedRangeHigh + 1)
+        if (selectedRangeHigh + 1 < this.pageCount - this.marginPages && this.showRightBreakView) {
+          setBreakView(selectedRangeHigh + 1, 'right')
         }
 
         // 3rd - loop thru high end of margin pages
         for (let i = this.pageCount - 1; i >= this.pageCount - this.marginPages; i--) {
           setPageItem(i);
         }
+
       }
       return items
     }
@@ -251,6 +273,10 @@ export default {
       this.selected = this.pageCount - 1
 
       this.clickHandler(this.selected)
+    },
+    expandBreakView(index) {
+      if (this.pages[index].breakViewType === 'right') this.showRightBreakView = false;
+      if (this.pages[index].breakViewType === 'left') this.showLeftBreakView = false;
     }
   }
 }
@@ -261,3 +287,4 @@ a {
   cursor: pointer;
 }
 </style>
+
