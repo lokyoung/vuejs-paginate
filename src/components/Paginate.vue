@@ -243,14 +243,18 @@ export default {
       return (this.selected === this.pageCount - 1) || (this.pageCount === 0)
     },
     selectFirstPage() {
-      this.selected = 0
+		if (this.selected === 0) return
 
-      this.clickHandler(this.selected)
+		this.selected = 0
+
+      this.clickHandler(this.selected + 1)
     },
     selectLastPage() {
-      this.selected = this.pageCount - 1
+		if (this.selected === this.pageCount - 1) return
 
-      this.clickHandler(this.selected)
+		this.selected = this.pageCount - 1
+
+      this.clickHandler(this.selected + 1)
     }
   }
 }
