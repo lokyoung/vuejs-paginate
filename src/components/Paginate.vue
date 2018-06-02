@@ -243,11 +243,13 @@ export default {
       return (this.selected === this.pageCount - 1) || (this.pageCount === 0)
     },
     selectFirstPage() {
+      if (this.selected <= 0) return
       this.selected = 0
 
       this.clickHandler(this.selected)
     },
     selectLastPage() {
+      if (this.selected >= this.pageCount - 1) return
       this.selected = this.pageCount - 1
 
       this.clickHandler(this.selected)
