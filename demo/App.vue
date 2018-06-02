@@ -19,6 +19,7 @@
         :next-link-class="'next-link-item'"
         :break-view-class="'break-view'"
         :break-view-link-class="'break-view-link'"
+        :first-last-button="true"
       ></paginate>
     </div>
 

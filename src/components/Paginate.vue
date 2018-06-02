@@ -246,13 +246,13 @@ export default {
       if (this.selected <= 0) return
       this.selected = 0
 
-      this.clickHandler(this.selected)
+      this.clickHandler(this.selected + 1)
     },
     selectLastPage() {
       if (this.selected >= this.pageCount - 1) return
       this.selected = this.pageCount - 1
 
-      this.clickHandler(this.selected)
+      this.clickHandler(this.selected + 1)
     }
   }
 }
