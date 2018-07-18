@@ -151,8 +151,8 @@ HTML
 | `page-count`      | `Number` | Total count of pages. **required** |
 | `page-range`      | `Number` | Range of pages which displayed. **default: 3** <br> *(Note: It is recommended to use an odd number, so that the same number of pages are displayed before and after the active page. If using an even number, there will be one more page number before the active page than after the current page)* |
 | `margin-pages`    | `Number` | The number of displayed pages for margins. **default: 1** |
-| `prev-text`       | `String` | Text for the previous button. **default: Prev**  |
-| `next-text`       | `String` | Text for the next button. **default: Next**  |
+| `prev-text`       | `String` | Text for the previous button. You can use HTML here. **default: Prev**  |
+| `next-text`       | `String` | Text for the next button. You can use HTML here. **default: Next**  |
 | `break-view-text` | `String` | Text for the break view indicator. **default: ...**  |
 | `initial-page`    | `Number` | The index of initial page which selected. **default: 0** |
 | `force-page`      | `Number` | The index of overridden selected page. |
@@ -187,6 +187,9 @@ You can customize the inner HTML of the previous button, next button, and break 
 | `nextContent` | Next button |
 | `breakViewContent` | Break view indicator |
 
+**Note**
+Slot of `prevContent` and `nextContent` are not supported after `v1.9.5`. You can directly set the HTML by `prev-text` and `next-text` props.
+ 
 **Example**
 ```html
 <paginate
