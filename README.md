@@ -182,7 +182,7 @@ HTML
 | `prev-text`       | `String` | Text for the previous button. You can use HTML here. **default: Prev**  |
 | `next-text`       | `String` | Text for the next button. You can use HTML here. **default: Next**  |
 | `break-view-text` | `String` | Text for the break view indicator. **default: ...**  |
-| `initial-page` **Deprecated after v2.0.0** | `Number` | The index of initial page which selected. **default: 0** |
+| `initial-page` <br> **Deprecated after v2.0.0** | `Number` | The index of initial page which selected. **default: 0** |
 | `force-page`      | `Number` | The page number of overridden selected page. |
 | `click-handler`   | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
 | `container-class` | `String` | CSS class name for the layout. |
