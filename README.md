@@ -111,6 +111,34 @@ export default {
 </style>
 ```
 
+### Value Binding
+Use `v-model` to set the selected page number. You can programmatically modify the current page by using this.
+
+```html
+<template>
+  <paginate
+    v-model="page"
+    :page-count="20"
+    :page-range="3"
+    :margin-pages="2"
+    :click-handler="clickCallback"
+    :prev-text="'Prev'"
+    :next-text="'Next'"
+    :container-class="'pagination'"
+    :page-class="'page-item'">
+  </paginate>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      page: 10
+    }
+  }
+}
+</script>
+```
 
 ### In HTML
 Must use kebab-case for props in pure HTML.
@@ -154,8 +182,8 @@ HTML
 | `prev-text`       | `String` | Text for the previous button. You can use HTML here. **default: Prev**  |
 | `next-text`       | `String` | Text for the next button. You can use HTML here. **default: Next**  |
 | `break-view-text` | `String` | Text for the break view indicator. **default: ...**  |
-| `initial-page`    | `Number` | The index of initial page which selected. **default: 0** |
-| `force-page`      | `Number` | The index of overridden selected page. |
+| `initial-page`    | `Number` | The index of initial page which selected. **Deprecated after v2.0.0** **default: 0** |
+| `force-page`      | `Number` | The page number of overridden selected page. |
 | `click-handler`   | `Function` | The method to call when page clicked. Use clicked page number as parameter. |
 | `container-class` | `String` | CSS class name for the layout. |
 | `page-class`      | `String` | CSS class name for tag `li` of each page element. |
@@ -173,8 +201,6 @@ HTML
 | `first-button-text` | `String` | Text for first button. (Not visible when `first-last-button` is false. You can use HTML here.) **default: 'First'** |
 | `last-button-text` | `String` | Text for last button. (Not visible when `first-last-button` is false. You can use HTML here.) **default: 'Last'** |
 | `hide-prev-next` | `Boolean` | Hide prev/next button when there is no previous or next page. **default: false** |
-
-**Note**: If for some reason you need to [programmatically modify the current page](https://github.com/lokyoung/vuejs-paginate/issues/16), declare a `ref` for your `<paginate>` component then, once `mounted`, you will be able to change the selected page using `this.$refs.paginate.selected = 42` . To bind such a modification to data change, use a [Vue `watch`](https://vuejs.org/v2/guide/computed.html#Watchers).
 
 ## Customize inner HTML (experimental)
 You can customize the inner HTML of the previous button, next button, and break view indicator, with the `slot` tag.

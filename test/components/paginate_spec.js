@@ -59,7 +59,7 @@ describe('Paginate', () => {
       const vm = new Component({
         propsData: {
           pageCount: 10,
-          initialPage: 1
+          value: 2
         }
       }).$mount()
       expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
@@ -92,8 +92,8 @@ describe('Paginate', () => {
       const vm = new Component({
         propsData: {
           pageCount: 10,
-          initialPage: 5,
-          forcePage: 5
+          value: 6,
+          forcePage: 6
         }
       }).$mount()
 
@@ -121,7 +121,7 @@ describe('Paginate', () => {
       const vm = new Component({
         propsData: {
           pageCount: 10,
-          initialPage: 9,
+          value: 10,
           breakViewClass: 'break-view'
         }
       }).$mount()
@@ -136,7 +136,7 @@ describe('Paginate', () => {
           pageCount: 10,
           pageRange: 5,
           marginPages: 0,
-          initialPage: 0,
+          value: 1,
           prevClass: 'ignore',
           nextClass: 'ignore',
           disabledClass: 'ignore'
@@ -151,7 +151,7 @@ describe('Paginate', () => {
           pageCount: 10,
           pageRange: 5,
           marginPages: 0,
-          initialPage: 4,
+          value: 5,
           prevClass: 'ignore',
           nextClass: 'ignore',
           disabledClass: 'ignore'
@@ -166,7 +166,7 @@ describe('Paginate', () => {
           pageCount: 10,
           pageRange: 5,
           marginPages: 0,
-          initialPage: 9,
+          value: 10,
           prevClass: 'ignore',
           nextClass: 'ignore',
           disabledClass: 'ignore'
@@ -180,8 +180,8 @@ describe('Paginate', () => {
     it('Show fist and last button', () => {
       const vm = new Component({
         propsData: {
+          value: 2,
           pageCount: 10,
-          initialPage: 1,
           firstLastButton: true
         }
       }).$mount()
@@ -206,8 +206,8 @@ describe('Paginate', () => {
     it('Show fist and last button when no li surround', () => {
       const vm = new Component({
         propsData: {
+          value: 2,
           pageCount: 10,
-          initialPage: 1,
           noLiSurround: true,
           firstLastButton: true
         }
@@ -236,7 +236,7 @@ describe('Paginate', () => {
       const vm = new Component({
         propsData: {
           pageCount: 10,
-          initialPage: 0,
+          value: 1,
           hidePrevNext: true
         }
       }).$mount()
@@ -249,7 +249,7 @@ describe('Paginate', () => {
       const vm = new Component({
         propsData: {
           pageCount: 10,
-          initialPage: 9,
+          value: 10,
           hidePrevNext: true
         }
       }).$mount()

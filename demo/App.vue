@@ -6,10 +6,10 @@
       <h3>Pagination component with 'li' tag surrounded</h3>
       <!-- The 'pagination' style using in containerClass comes from bootstrap -->
       <paginate
+        v-model="page"
         :page-count="20"
         :margin-pages="2"
         :page-range="5"
-        :initial-page="0"
         :container-class="'pagination'"
         :page-class="'page-item'"
         :page-link-class="'page-link-item'"
@@ -27,10 +27,10 @@
       <h3>Pagination component without 'li' tag surrounded</h3>
       <!-- The css class comes from semantic ui. -->
       <paginate
+        v-model="page"
         :page-count="20"
         :margin-pages="2"
         :page-range="5"
-        :initial-page="0"
         :container-class="'ui pagination menu'"
         :page-link-class="'item'"
         :prev-link-class="'item'"
@@ -47,7 +47,6 @@
         :page-count="10"
         :margin-pages="0"
         :page-range="5"
-        :initial-page="0"
         :container-class="'pagination'"
         :page-class="'page-item'"
         :page-link-class="'page-link-item'"
@@ -66,7 +65,6 @@
         :page-count="20"
         :margin-pages="2"
         :page-range="4"
-        :initial-page="0"
         :container-class="'pagination'"
         :page-class="'page-item'"
         :page-link-class="'page-link-item'"
@@ -91,6 +89,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      page: 1
+    }
+  },
 }
 </script>
 

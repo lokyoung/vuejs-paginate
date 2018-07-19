@@ -11,7 +11,7 @@
     <li v-for="page in pages" :class="[pageClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '', page.breakView ? breakViewClass: '']">
       <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass]" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
       <a v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
+      <a v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
     </li>
 
     <li v-if="!(lastPageSelected() && hidePrevNext)" :class="[nextClass, lastPageSelected() ? disabledClass : '']">
@@ -29,7 +29,7 @@
     <template v-for="page in pages">
       <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
       <a v-else-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]" tabindex="0">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index)" @keyup.enter="handlePageSelected(page.index)" :class="[pageLinkClass, page.selected ? activeClass : '']" tabindex="0">{{ page.content }}</a>
+      <a v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :class="[pageLinkClass, page.selected ? activeClass : '']" tabindex="0">{{ page.content }}</a>
     </template>
     <a v-if="!(lastPageSelected() && hidePrevNext)" @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0" v-html="nextText"></a>
     <a v-if="firstLastButton" @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0" v-html="lastButtonText"></a>
@@ -39,13 +39,13 @@
 <script>
 export default {
   props: {
+    value: {
+      type: Number,
+      default: 1
+    },
     pageCount: {
       type: Number,
       required: true
-    },
-    initialPage: {
-      type: Number,
-      default: 0
     },
     forcePage: {
       type: Number
@@ -130,11 +130,6 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      selected: this.initialPage
-    }
-  },
   beforeUpdate() {
     if (this.forcePage === undefined) return
     if (this.forcePage !== this.selected) {
@@ -142,6 +137,9 @@ export default {
     }
   },
   computed: {
+    selected: function() {
+      return this.value;
+    },
     pages: function () {
       let items = {}
       if (this.pageCount <= this.pageRange) {
@@ -149,7 +147,7 @@ export default {
           let page = {
             index: index,
             content: index + 1,
-            selected: index === this.selected
+            selected: index === (this.selected - 1)
           }
           items[index] = page
         }
@@ -160,7 +158,7 @@ export default {
           let page = {
             index: index,
             content: index + 1,
-            selected: index === this.selected
+            selected: index === (this.selected - 1)
           }
 
           items[index] = page
@@ -183,7 +181,7 @@ export default {
         // 2nd - loop thru selected range
         let selectedRangeLow = 0;
         if (this.selected - halfPageRange > 0) {
-          selectedRangeLow = this.selected - halfPageRange;
+          selectedRangeLow = this.selected - 1 - halfPageRange;
         }
 
         let selectedRangeHigh = selectedRangeLow + this.pageRange - 1;
@@ -218,41 +216,38 @@ export default {
     handlePageSelected(selected) {
       if (this.selected === selected) return
 
-      this.selected = selected
-
-      this.clickHandler(this.selected + 1)
+      this.$emit('input', selected)
+      this.clickHandler(selected)
     },
     prevPage() {
       if (this.selected <= 0) return
 
-      this.selected--
-
-      this.clickHandler(this.selected + 1)
+      this.$emit('input', this.selected - 1)
+      this.clickHandler(this.selected - 1)
     },
     nextPage() {
-      if (this.selected >= this.pageCount - 1) return
+      if (this.selected >= this.pageCount) return
 
-      this.selected++
-
+      this.$emit('input', this.selected + 1)
       this.clickHandler(this.selected + 1)
     },
     firstPageSelected() {
-      return this.selected === 0
+      return this.selected === 1
     },
     lastPageSelected() {
-      return (this.selected === this.pageCount - 1) || (this.pageCount === 0)
+      return (this.selected === this.pageCount) || (this.pageCount === 0)
     },
     selectFirstPage() {
-      if (this.selected <= 0) return
-      this.selected = 0
+      if (this.selected <= 1) return
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('input', 1)
+      this.clickHandler(1)
     },
     selectLastPage() {
-      if (this.selected >= this.pageCount - 1) return
-      this.selected = this.pageCount - 1
+      if (this.selected >= this.pageCount) return
 
-      this.clickHandler(this.selected + 1)
+      this.$emit('input', this.pageCount)
+      this.clickHandler(this.pageCount)
     }
   }
 }
