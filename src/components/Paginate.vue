@@ -220,7 +220,7 @@ export default {
       this.clickHandler(selected)
     },
     prevPage() {
-      if (this.selected <= 0) return
+      if (this.selected <= 1) return
 
       this.$emit('input', this.selected - 1)
       this.clickHandler(this.selected - 1)
