@@ -25,7 +25,7 @@ describe('Paginate', () => {
       nextButton.click()
 
       Vue.nextTick(() => {
-        expect(vm.$el.querySelector(".active a").textContent).to.equal("2")
+        expect(vm.$el.querySelector(".active a").textContent).to.equal("1")
 
         const prevButton = vm.$el.querySelector("li:first-child a")
         prevButton.click()
@@ -77,7 +77,9 @@ describe('Paginate', () => {
       const nextButton = vm.$el.querySelector("li:last-child a")
       nextButton.click()
       Vue.nextTick(() => {
+
         expect(vm.$el.querySelector(".active a").textContent).to.equal("6")
+       
 
         const prevButton = vm.$el.querySelector("li:first-child a")
         prevButton.click()
@@ -93,7 +95,7 @@ describe('Paginate', () => {
         propsData: {
           pageCount: 10,
           value: 6,
-          forcePage: 6
+          forcePage: 5
         }
       }).$mount()
 

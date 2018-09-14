@@ -9,6 +9,7 @@
         v-model="page"
         :page-count="20"
         :margin-pages="2"
+        :force-page="5"
         :page-range="5"
         :container-class="'pagination'"
         :page-class="'page-item'"
