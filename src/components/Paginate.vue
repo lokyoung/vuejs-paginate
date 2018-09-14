@@ -130,12 +130,6 @@ export default {
       default: false
     }
   },
-  beforeUpdate() {
-    if (this.forcePage === undefined) return
-    if (this.forcePage !== this.selected) {
-      this.selected = this.forcePage
-    }
-  },
   computed: {
     selected: function() {
       return this.value;
@@ -214,9 +208,13 @@ export default {
   },
   methods: {
     handlePageSelected(selected) {
-      if (this.selected === selected) return
-
-      this.$emit('input', selected)
+      if (this.forcePage !== undefined && this.forcePage !== selected) {
+      selected = this.forcePage
+      }else{
+        if (this.selected === selected) return
+      };
+      this.$emit('input', selected) 
+   
       this.clickHandler(selected)
     },
     prevPage() {
