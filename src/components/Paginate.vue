@@ -40,8 +40,7 @@
 export default {
   props: {
     value: {
-      type: Number,
-      default: 1
+      type: Number
     },
     pageCount: {
       type: Number,
@@ -137,8 +136,13 @@ export default {
     }
   },
   computed: {
-    selected: function() {
-      return this.value;
+    selected: {
+      get: function() {
+        return this.value || this.innerValue
+      },
+      set: function(newValue) {
+        this.innerValue = newValue
+      }
     },
     pages: function () {
       let items = {}
@@ -212,24 +216,28 @@ export default {
       return items
     }
   },
+  data() {
+    return {
+      innerValue: 1,
+    }
+  },
   methods: {
     handlePageSelected(selected) {
       if (this.selected === selected) return
 
+      this.innerValue = selected
       this.$emit('input', selected)
       this.clickHandler(selected)
     },
     prevPage() {
       if (this.selected <= 1) return
 
-      this.$emit('input', this.selected - 1)
-      this.clickHandler(this.selected - 1)
+      this.handlePageSelected(this.selected - 1)
     },
     nextPage() {
       if (this.selected >= this.pageCount) return
 
-      this.$emit('input', this.selected + 1)
-      this.clickHandler(this.selected + 1)
+      this.handlePageSelected(this.selected + 1)
     },
     firstPageSelected() {
       return this.selected === 1
@@ -240,14 +248,12 @@ export default {
     selectFirstPage() {
       if (this.selected <= 1) return
 
-      this.$emit('input', 1)
-      this.clickHandler(1)
+      this.handlePageSelected(1)
     },
     selectLastPage() {
       if (this.selected >= this.pageCount) return
 
-      this.$emit('input', this.pageCount)
-      this.clickHandler(this.pageCount)
+      this.handlePageSelected(this.pageCount)
     }
   }
 }
