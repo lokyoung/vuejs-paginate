@@ -1,38 +1,38 @@
 <template>
   <ul :class="containerClass" v-if="!noLiSurround">
     <li v-if="firstLastButton" :class="[pageClass, firstPageSelected() ? disabledClass : '']">
-      <a @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :class="pageLinkClass" :tabindex="firstPageSelected() ? -1 : 0" v-html="firstButtonText"></a>
+      <a @click="selectFirstPage($event)" @keyup.enter="selectFirstPage($event)" :class="pageLinkClass" :tabindex="firstPageSelected() ? -1 : 0" v-html="firstButtonText"></a>
     </li>
 
     <li v-if="!(firstPageSelected() && hidePrevNext)" :class="[prevClass, firstPageSelected() ? disabledClass : '']">
-      <a @click="prevPage()" @keyup.enter="prevPage()" :class="prevLinkClass" :tabindex="firstPageSelected() ? -1 : 0" v-html="prevText"></a>
+      <a @click="prevPage($event)" @keyup.enter="prevPage($event)" :class="prevLinkClass" :tabindex="firstPageSelected() ? -1 : 0" v-html="prevText"></a>
     </li>
 
     <li v-for="page in pages" :class="[pageClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '', page.breakView ? breakViewClass: '']">
       <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass]" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
       <a v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
+      <a v-else @click="handlePageSelected(page.index + 1, $event)" @keyup.enter="handlePageSelected(page.index + 1, $event)" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
     </li>
 
     <li v-if="!(lastPageSelected() && hidePrevNext)" :class="[nextClass, lastPageSelected() ? disabledClass : '']">
-      <a @click="nextPage()" @keyup.enter="nextPage()" :class="nextLinkClass" :tabindex="lastPageSelected() ? -1 : 0" v-html="nextText"></a>
+      <a @click="nextPage($event)" @keyup.enter="nextPage($event)" :class="nextLinkClass" :tabindex="lastPageSelected() ? -1 : 0" v-html="nextText"></a>
     </li>
 
     <li v-if="firstLastButton" :class="[pageClass, lastPageSelected() ? disabledClass : '']">
-      <a @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="pageLinkClass" :tabindex="lastPageSelected() ? -1 : 0" v-html="lastButtonText"></a>
+      <a @click="selectLastPage($event)" @keyup.enter="selectLastPage($event)" :class="pageLinkClass" :tabindex="lastPageSelected() ? -1 : 0" v-html="lastButtonText"></a>
     </li>
   </ul>
 
   <div :class="containerClass" v-else>
-    <a v-if="firstLastButton" @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :class="[pageLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0" v-html="firstButtonText"></a>
-    <a v-if="!(firstPageSelected() && hidePrevNext)" @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0" v-html="prevText"></a>
+    <a v-if="firstLastButton" @click="selectFirstPage($event)" @keyup.enter="selectFirstPage($event)" :class="[pageLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0" v-html="firstButtonText"></a>
+    <a v-if="!(firstPageSelected() && hidePrevNext)" @click="prevPage($event)" @keyup.enter="prevPage($event)" :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0" v-html="prevText"></a>
     <template v-for="page in pages">
       <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
       <a v-else-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]" tabindex="0">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :class="[pageLinkClass, page.selected ? activeClass : '']" tabindex="0">{{ page.content }}</a>
+      <a v-else @click="handlePageSelected(page.index + 1, $event)" @keyup.enter="handlePageSelected(page.index + 1, $event)" :class="[pageLinkClass, page.selected ? activeClass : '']" tabindex="0">{{ page.content }}</a>
     </template>
-    <a v-if="!(lastPageSelected() && hidePrevNext)" @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0" v-html="nextText"></a>
-    <a v-if="firstLastButton" @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0" v-html="lastButtonText"></a>
+    <a v-if="!(lastPageSelected() && hidePrevNext)" @click="nextPage($event)" @keyup.enter="nextPage($event)" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0" v-html="nextText"></a>
+    <a v-if="firstLastButton" @click="selectLastPage($event)" @keyup.enter="selectLastPage($event)" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']" tabindex="0" v-html="lastButtonText"></a>
   </div>
 </template>
 
@@ -222,22 +222,22 @@ export default {
     }
   },
   methods: {
-    handlePageSelected(selected) {
+    handlePageSelected(selected, event) {
       if (this.selected === selected) return
 
       this.innerValue = selected
-      this.$emit('input', selected)
-      this.clickHandler(selected)
+      this.$emit('input', selected, event)
+      this.clickHandler(selected, event)
     },
-    prevPage() {
+    prevPage(event) {
       if (this.selected <= 1) return
 
-      this.handlePageSelected(this.selected - 1)
+      this.handlePageSelected(this.selected - 1, event)
     },
-    nextPage() {
+    nextPage(event) {
       if (this.selected >= this.pageCount) return
 
-      this.handlePageSelected(this.selected + 1)
+      this.handlePageSelected(this.selected + 1, event)
     },
     firstPageSelected() {
       return this.selected === 1
@@ -245,15 +245,15 @@ export default {
     lastPageSelected() {
       return (this.selected === this.pageCount) || (this.pageCount === 0)
     },
-    selectFirstPage() {
+    selectFirstPage(event) {
       if (this.selected <= 1) return
 
-      this.handlePageSelected(1)
+      this.handlePageSelected(1, event)
     },
-    selectLastPage() {
+    selectLastPage(event) {
       if (this.selected >= this.pageCount) return
 
-      this.handlePageSelected(this.pageCount)
+      this.handlePageSelected(this.pageCount, event)
     }
   }
 }
