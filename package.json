@@ -1,26 +1,26 @@
 {
-  "name": "vuejs-paginate",
-  "version": "2.1.0",
-  "description": "A simple pagination component for Vue.js",
+  "name": "vuejs-paginate2",
+  "version": "2.2.1",
+  "description": "A simple pagination component for Vue.js with Added Accessibility",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf ./dist && webpack --config ./webpack.config.js",
+    "build": "webpack --config ./webpack.config.js",
     "test": "BABEL_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js --single-run",
     "demo": "webpack-dev-server --config ./demo/webpack.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lokyoung/vuejs-paginate.git"
+    "url": "git+https://github.com/r0hanc/vuejs-paginate.git"
   },
   "keywords": [
     "vue",
     "paginate",
     "pagination"
   ],
-  "author": "Cain Liu",
+  "author": "Cain Liu - Rohan ",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lokyoung/vuejs-paginate/issues"
+    "url": "https://github.com/r0hanc/vuejs-paginate/issues"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
