@@ -255,6 +255,11 @@ export default {
 
       this.handlePageSelected(this.pageCount)
     }
+  },
+  watch: {
+    forcePage() {
+      this.$forceUpdate()
+    }
   }
 }
 </script>
