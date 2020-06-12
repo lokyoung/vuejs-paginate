@@ -1,38 +1,38 @@
 <template>
   <ul :class="containerClass" v-if="!noLiSurround">
     <li v-if="firstLastButton" :class="[pageClass, firstPageSelected() ? disabledClass : '']">
-      <a @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :aria-label="helperText.firstLinkText" :class="pageLinkClass" :tabindex="firstPageSelected() ? -1 : 0" v-html="firstButtonText"></a>
+      <a href="javascript:void(0)" @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :aria-label="helperText.firstLinkText" :class="pageLinkClass" :tabindex="firstPageSelected() ? -1 : 0" v-html="firstButtonText"></a>
     </li>
 
     <li v-if="!(firstPageSelected() && hidePrevNext)" :class="[prevClass, firstPageSelected() ? disabledClass : '']">
-      <a @click="prevPage()" @keyup.enter="prevPage()" :class="prevLinkClass" :aria-label="helperText.prevLinkText" :tabindex="firstPageSelected() ? -1 : 0" v-html="prevText"></a>
+      <a href="javascript:void(0)" @click="prevPage()" @keyup.enter="prevPage()" :class="prevLinkClass" :aria-label="helperText.prevLinkText" :tabindex="firstPageSelected() ? -1 : 0" v-html="prevText"></a>
     </li>
 
     <li v-for="(page, idx) in pages" :class="[pageClass, page.selected ? activeClass : '', page.disabled ? disabledClass : '', page.breakView ? breakViewClass: '']" :key="idx">
-      <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass]" :aria-label="helperText.breakViewLinkText" tabindex="0"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
-      <a v-else-if="page.disabled" :class="pageLinkClass" :aria-label="helperText.pageLinkText" tabindex="0">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :aria-label = "helperText.pageLinkText + ' ' + page.content" :aria-current="page.selected" :class="pageLinkClass" tabindex="0">{{ page.content }}</a>
+      <a href="javascript:void(0)" v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass]" :aria-label="helperText.breakViewLinkText" tabindex="-1" aria-hidden="true"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
+      <a href="javascript:void(0)" v-else-if="page.disabled" :class="pageLinkClass" :aria-label="helperText.pageLinkText">{{ page.content }}7777</a>
+      <a href="javascript:void(0)" v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :aria-label="helperText.pageLinkText + ' ' + page.content" :aria-current="page.selected" :class="pageLinkClass" :tabindex="page.selected ? '-1' : '0'" :aria-hidden="page.selected ? 'true' : 'false'">{{ page.content }} <span class="sr-only">(current)</span></a>
     </li>
 
     <li v-if="!(lastPageSelected() && hidePrevNext)" :class="[nextClass, lastPageSelected() ? disabledClass : '']">
-      <a @click="nextPage()" @keyup.enter="nextPage()" :class="nextLinkClass" :aria-label="helperText.nextLinkText" :tabindex="lastPageSelected() ? -1 : 0" v-html="nextText"></a>
+      <a href="javascript:void(0)" @click="nextPage()" @keyup.enter="nextPage()" :class="nextLinkClass" :aria-label="helperText.nextLinkText" :tabindex="lastPageSelected() ? -1 : 0" v-html="nextText"></a>
     </li>
 
     <li v-if="firstLastButton" :class="[pageClass, lastPageSelected() ? disabledClass : '']">
-      <a @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="pageLinkClass" :aria-label="helperText.lastLinkText" :tabindex="lastPageSelected() ? -1 : 0" v-html="lastButtonText"></a>
+      <a href="javascript:void(0)" @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="pageLinkClass" :aria-label="helperText.lastLinkText" :tabindex="lastPageSelected() ? -1 : 0" v-html="lastButtonText"></a>
     </li>
   </ul>
 
   <div :class="containerClass" v-else>
-    <a v-if="firstLastButton" @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :aria-label="helperText.firstLinkText" :class="[pageLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0" v-html="firstButtonText"></a>
-    <a v-if="!(firstPageSelected() && hidePrevNext)" @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']" :aria-label="helperText.prevLinkText" tabindex="0" v-html="prevText"></a>
+    <a href="javascript:void(0)" v-if="firstLastButton" @click="selectFirstPage()" @keyup.enter="selectFirstPage()" :aria-label="helperText.firstLinkText":class="[pageLinkClass, firstPageSelected() ? disabledClass : '']" tabindex="0" v-html="firstButtonText"></a>
+    <a href="javascript:void(0)" v-if="!(firstPageSelected() && hidePrevNext)" @click="prevPage()" @keyup.enter="prevPage()" :class="[prevLinkClass, firstPageSelected() ? disabledClass : '']" :aria-label="helperText.prevLinkText" tabindex="0" v-html="prevText"></a>
     <template v-for="(page, idx) in pages">
-      <a v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']" :aria-label="helperText.breakViewLinkText" tabindex="0" :key="idx"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
-      <a v-else-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]" :aria-label="helperText.pageLinkText" tabindex="0" :key="idx">{{ page.content }}</a>
-      <a v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :class="[pageLinkClass, page.selected ? activeClass : '']" :aria-label="helperText.pageLinkText + ' ' + page.content" :aria-current="page.selected" tabindex="0" :key="idx">{{ page.content }}</a>
+      <a href="javascript:void(0)" v-if="page.breakView" :class="[pageLinkClass, breakViewLinkClass, page.disabled ? disabledClass : '']" :aria-label="helperText.breakViewLinkText" tabindex="0" :key="idx"><slot name="breakViewContent">{{ breakViewText }}</slot></a>
+      <a href="javascript:void(0)" v-else-if="page.disabled" :class="[pageLinkClass, page.selected ? activeClass : '', disabledClass]"  :aria-label="helperText.pageLinkText" tabindex="0" :key="idx">{{ page.content }}</a>
+      <a href="javascript:void(0)" v-else @click="handlePageSelected(page.index + 1)" @keyup.enter="handlePageSelected(page.index + 1)" :class="[pageLinkClass, page.selected ? activeClass : '']" :aria-label="helperText.pageLinkText + ' ' + page.content" :aria-current="page.selected" :tabindex="page.selected ? '-1' : '0'" :key="idx">{{ page.content }}</a>
     </template>
-    <a v-if="!(lastPageSelected() && hidePrevNext)" @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" :aria-label="helperText.nextLinkText" tabindex="0" v-html="nextText"></a>
-    <a v-if="firstLastButton" @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']" :aria-label="helperText.lastLinkText"  tabindex="0" v-html="lastButtonText"></a>
+    <a href="javascript:void(0)" v-if="!(lastPageSelected() && hidePrevNext)" @click="nextPage()" @keyup.enter="nextPage()" :class="[nextLinkClass, lastPageSelected() ? disabledClass : '']" :aria-label="helperText.nextLinkText" tabindex="0" v-html="nextText"></a>
+    <a href="javascript:void(0)" v-if="firstLastButton" @click="selectLastPage()" @keyup.enter="selectLastPage()" :class="[pageLinkClass, lastPageSelected() ? disabledClass : '']"  :aria-label="helperText.lastLinkText" tabindex="0" v-html="lastButtonText"></a>
   </div>
 </template>
 
@@ -132,12 +132,12 @@ export default {
       type: Object,
       default: function () {
         return {
-          firstLinkText : "Goto First Page",
-          LastLinkText : "Goto Last Page",
-          nextLinkText : "Goto Next Page",
-          prevLinkText : "Goto Previous Page",
+          firstLinkText : "First Page",
+          LastLinkText : "Last Page",
+          nextLinkText : "Next Page",
+          prevLinkText : "Previous Page",
           breakViewLinkText: "Pages hidden",
-          pageLinkText : "Goto Page"
+          pageLinkText : "Page"
         }
       }
     }
@@ -275,5 +275,20 @@ export default {
 <style lang="css" scoped>
 a {
   cursor: pointer;
+}
+.sr-only {
+  display:none
+}
+.active .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  border: 0;
 }
 </style>
