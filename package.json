@@ -1,6 +1,6 @@
 {
   "name": "vuejs-paginate2",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A simple pagination component for Vue.js with Added Accessibility",
   "main": "dist/index.js",
   "scripts": {
