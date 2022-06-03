@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "A simple pagination component for Vue.js",
   "main": "dist/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "rm -rf ./dist && webpack --config ./webpack.config.js",
     "test": "BABEL_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js --single-run",
